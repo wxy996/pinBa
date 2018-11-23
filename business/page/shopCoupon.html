@@ -1,0 +1,230 @@
+<!-- 发放优惠券 -->
+<!-- 店铺装修 -->
+<div class="conWrap ng-scope" style="padding: .44rem 0.2rem 0.54rem 0.2rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<div class="leftTit" style="padding-left: 0.54rem;" ng-show='userInfoType=="super"'>
+					<a class="aHref hand"  href="#/shgl" ng-click="handclk('shgl')">店铺管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">{{shopName}}</span>
+				</div>
+				<div class="leftTit" style="padding-left: 0.54rem;" ng-show='userInfoType=="shop_manager"'>
+					<a class="aHref hand"  href="#/shglManger" ng-click="handclk('shglManger')">店铺管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">{{shopName}}</span>
+				</div>
+
+					<div class="searchWrap signBtn" style="margin-top: 0.52rem;display: inline-block;float: right;margin: 0.15rem 0;padding: 0">
+						<a href="javascipt:;" style="width: 1.21rem;height: 0.4rem;line-height: 0.4rem;border-radius: 0; font-size: 0.18rem;float: right" class="btn-blueBig" type="submit" ng-click="couponBtn('add')">新建优惠券</a>
+					</div>
+				</div>
+				<div class="couponTime">
+				<!-- 	<div>
+						<span>提交时间：</span>
+						<span class="time">9.00</span>
+						<span> ~ </span>
+						<span class="time">9.00</span>
+					</div>
+					<div>
+						<span>审核时间：</span>
+						<span class="time">9.00</span>
+						<span> ~ </span>
+						<span class="time">9.00</span>
+					</div> -->
+					<div>
+						<span>状态：</span>
+						<select name="" id="checkType">
+							<option value="all">全部</option>
+							<option value="-1">审核失败</option>
+							<option value="0">待审核</option>
+							<option value="1">审核成功</option>
+						</select>
+					</div>
+				</div>
+				<div class="shopBorder">
+					<table class="staffTable">
+						<thead>
+							<th style="width: 5%">标题</th>
+							<th style="width: 5%">库存</th>
+							<th style="width: 9%">起拼时间</th>
+							<th style="width: 9%">结束时间</th>
+							<th style="width: 9%">达标金额</th>
+							<th style="width: 9%">售卖金额</th>
+							<th style="width: 9%">折扣比例</th>
+							<th style="width: 5%">拼团人数</th>
+							<th style="width: 8%">有效日期</th>
+							<th style="width: 9%">提交时间</th>
+							<th style="width: 5%">操作员</th>
+							<th style="width: 4%">状态</th>
+							<th style="width: 9%">操作</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in shopList'>
+								<td>{{p.title}}</td>
+								<td>{{p.total_stock}}</td>
+								<td>{{p.begin_datetime}}</td>
+								<td>{{p.end_datetime}}</td>
+								<td>{{p.full_amount}}</td>
+								<td>{{p.price}}</td>
+								<td>{{p.discount}}</td>
+								<td>{{p.fight_group}}</td>
+								<td>{{p.limit_date}}</td>
+								<td>
+									{{p.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}
+								</td>
+								<td>{{p.create_user.realname}}</td>
+								<td>{{p.check_status==all?"全部":""}}
+									{{p.check_status==1?"审核成功":""}}
+									{{p.check_status==0?"待审核":""}}
+									{{p.check_status==-1?"审核失败":""}}</td>
+								<td style="padding-left:0" ng-show='userInfoType=="super"||userInfoType=="shop_manager"'>
+									<span class="hand" ng-click='tgClick(p.id)' ng-show='p.check_status==0' style="color: #32c12b">通过</span>
+									<span class="hand" ng-click='delClick(p.id)' ng-show='p.check_status==0' style="color: #eac100">驳回</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 新建编辑人员 -->
+<div class="modal" ng-show='modalShow'>
+	<div style="height:6.2rem;width: 9rem">
+		<div class="title" style="">
+			<span>{{shopType=='add'?'创建优惠券':'修改店长'}} </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='modalShow=false'>
+		</div>
+		<ul class="con" style="padding: 0.4rem">
+			<li class="clearfix">
+				<div class="l">
+					选择模板
+				</div>
+				<div class="r" style="width: 6.6rem">
+					<select name="" id="muban" style="width: 100%;">
+						
+					</select>
+				</div>
+			</li>
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					标题
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input type="text" style="width: 100%" ng-model='title'>
+				</div>
+			</li>
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					库存
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input type="text" style="width: 100%" ng-model='total_stock'>
+				</div>
+			</li>
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					起拼时间
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input dd-laydate modeltext='startTime' class="hand" type="text" ng-model="startTime" placeholder="选择开始时间"  style="width: 100%"/>
+				</div>
+			</li>	
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					结束时间
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input dd-laydate modeltext='endTime' class="hand" type="text" ng-model="endTime" placeholder="选择结束时间"  style="width: 100%"/>
+				</div>
+			</li>
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					达标金额
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input type="text" style="width: 100%" ng-model='full_amount'>
+				</div>
+			</li>
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					售卖金额
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input type="text" style="width: 100%" ng-model='price'>
+				</div>
+			</li>
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					折扣比例
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input type="text" style="width: 100%" ng-model='discount' placeholder="1~100之间的数字">
+				</div>
+			</li>
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					拼团人数
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input type="text" style="width: 100%" ng-model='fight_group'>
+				</div>
+			</li>
+			<li class="clearfix" style="display: inline-block;width: 48%;">
+				<div class="l">
+					有效日期
+				</div>
+				<div class="r" style="width: 2.7rem">
+					<input type="text" style="width: 100%" ng-model='limit_date' placeholder="请输入数字（天）">
+				</div>
+			</li>
+			<li class="clearfix" style="text-align: center;margin-bottom: 0">
+				<div class="cheboxWrap cheboxWrap2" style="float: none;">
+					<label for="c1">
+						<input id="c1" type="checkbox">
+						存储为模板
+					</label>
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='saveShop()'>{{peopleType=='add'?'提交':'确定修改'}}</span>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- 驳回 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>操作</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='delmodalShow=false'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要驳回吗?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='delYes()'>确定</span>
+			</div>
+	</div>
+</div>
+
+<!-- 通过 -->
+<div class="modal" ng-show='yesmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>操作</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='yesmodalShow=false'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要通过吗?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='tgYes()'>确定</span>
+			</div>
+	</div>
+</div>

@@ -1,0 +1,113 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="posterViewWrap conWrap" style="padding-top: 0">
+	<div class="row">
+		<div>
+			<div style="padding-top:.61rem;padding-bottom: .41rem;">
+				<div class="leftTit">
+					广告申请列表>
+				</div>
+				<div class="navChangeWrap">
+					<span ng-class='navType=="nav1"?"ac hand":"hand"' ng-click='navBtn("nav1")'>申请中</span>
+					<span ng-class='navType=="nav2"?"ac hand":"hand"' ng-click='navBtn("nav2")'>历史记录</span>
+				</div>
+				<div style="padding-left: 0.8rem;">
+					<table class="staffTable" ng-show='navType=="nav1"'>
+						<thead>
+							<th>商户名称</th>
+							<th>店铺名称</th>
+							<th>店铺归属地</th>
+							<th>商户电话</th>
+							<th>申请时间</th>
+							<th>操作</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>西安肉夹馍</td>
+								<td>
+									西安肉夹馍（人大店）
+								</td>
+								<td>
+									北京
+								</td>
+								<td>
+									15666662222
+								</td>
+								<td>
+									2018-09-09
+								</td>
+								<td>
+									<span class="hand" style="color: #CF6060;margin-right: 0.1rem" ng-click='noBtn()'>拒绝</span>
+									<span class="hand" style="color: #62D17E">开通</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="staffTable" ng-show='navType=="nav2"'>
+						<thead>
+							<th>商户名称</th>
+							<th>店铺名称</th>
+							<th>店铺归属地</th>
+							<th>商户电话</th>
+							<th>申请时间</th>
+							<th>操作</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>西安肉夹馍</td>
+								<td>
+									西安肉夹馍（人大店）
+								</td>
+								<td>
+									北京
+								</td>
+								<td>
+									15666662222
+								</td>
+								<td>
+									2018-09-09
+								</td>
+								<td>
+									<span class="hand" style="color: #CF6060">已拒绝</span>
+								</td>
+							</tr>
+							<tr>
+								<td>西安肉夹馍</td>
+								<td>
+									西安肉夹馍（人大店）
+								</td>
+								<td>
+									北京
+								</td>
+								<td>
+									15666662222
+								</td>
+								<td>
+									2018-09-09
+								</td>
+								<td>
+									<span class="hand" style="color: #62D17E">已开通</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 拒绝 -->
+<div class="modal" ng-show='nomodalShow'>
+	<div style="height: 4.4rem;">
+		<div class="title" style="">
+			<span>拒绝原因</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeNoModal()'>
+		</div>
+		<div class="con">
+			<textarea name="" id="" placeholder="请写出拒绝原因"></textarea>
+			<div style="text-align: center;">
+				<span class="modalSendBtn">拒绝</span>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,188 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="posterViewWrap merchantViewWrap conWrap" style="padding-top: 0">
+	<div class="row">
+		<div>
+			<div style="padding-top:.61rem;padding-bottom: .41rem;">
+				<div class="leftTit">
+					商铺审核列表>
+				</div>
+				<div class="navChangeWrap">
+					<span ng-class='navType=="nav0"?"ac hand":"hand"' ng-click='navBtn("0")'>申请中</span>
+					<span ng-class='navType=="nav1"?"ac hand":"hand"' ng-click='navBtn("1")'>历史记录</span>
+<!-- 
+					<span class="hand" ng-show='navType=="nav1"' style="width: 1.68rem;height: 0.4re,;background: #4E4E4E;color: #fff;border-radius: 0.05rem;float: right;margin-right:0 " ng-click='editExtract()'>修改抽成比例</span> -->
+				</div>
+				<div style="padding-left: 0.8rem;">
+					<table class="staffTable" ng-show='navType=="nav0"'>
+						<thead>
+							<th style="width: 20%;">商户名称</th>
+							<th style="width: 20%;">商铺名称</th>
+							<th style="width: 20%;">申请时间</th>
+							<th style="width: 20%;">地推人员</th>	
+							<th style="width: 20%;">操作</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in shopList'>
+								<td>{{p.trade.title}}</td>
+								<td>{{p.shop_name}}</td>
+								<td>
+									{{p.trade.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}
+								</td>
+								<td>
+									{{p.push_user.username}}
+								</td>
+								<td>
+									<span class="hand" style="color: #CF6060;margin-right: 0.1rem" ng-click='noBtn(p.id)'>驳回</span>
+									<span class="hand" style="color: #62D17E;margin-right: 0.1rem" ng-click='openModal(p.id)'>开通</span>
+									<span class="hand" style="color: #0071e6" ng-click='changeDt(p.id,p.plat_push_user_id)'>修改地推人员</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="staffTable" ng-show='navType=="nav1"'>
+						<thead>
+							<th style="width: 12.5%">商户名称</th>
+							<th style="width: 12.5%">商铺名称</th>
+							<th style="width: 12.5%">商户电话</th>
+							<th style="width: 12.5%">申请时间</th>
+							<th style="width: 12.5%">平台抽成</th>
+							<th style="width: 12.5%">提现下限</th>
+							<th>状态</th>
+							<th style="width: 12.5%">操作</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in shopList'>
+								<td>{{p.trade.title}}</td>
+								<td>{{p.shop_name}}</td>
+								<td>
+									{{p.shop_tel}}
+								</td>
+								<td>
+									{{p.trade.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}
+								</td>
+								<td>
+									{{p.draw_scale}}
+								</td>
+								<td>
+									{{p.limit_money_lower}}
+								</td>
+								<td>
+									<span ng-show='p.check_status==-2' class="hand" style="color: #CF6060">封号</span>
+									<span ng-show='p.check_status==-1' class="hand" style="color: #CF6060">未通过</span>
+									<span ng-show='p.check_status==0' class="hand" style="color: #CF6060">未审核</span>
+									<span ng-show='p.check_status==1' class="hand" style="color: #CF6060">已通过</span>
+								</td>
+								<td>
+									<!-- <span class="hand" style="color: #CF6060">已拒绝</span> -->
+									<span ng-show='p.check_status==1' class="hand" ng-click='editExtract(p.id,p.draw_scale,p.limit_money_lower)'> 提成比例</span>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 查封原因 -->
+<div class="modal" ng-show='nomodalShow'>
+	<div style="height: 4.4rem;">
+		<div class="title" style="">
+			<span>驳回原因</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeNoModal()'>
+		</div>
+		<div class="con">
+			<textarea name="" id="" placeholder="请写出驳回原因" ng-model='cfText'></textarea>
+			<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='jjBtn()'>驳回</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- kaitong -->
+<div class="modal" ng-show='openmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>操作</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeopenAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			确定要开通?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='sureOpen()'>确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>
+<!-- 修改地推人员 -->
+<div class="modal" ng-show='dtmodalShow'>
+	<div style="height: 3rem;">
+		<div class="title" style="">
+			<span>修改地推人员</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closedtBtn()'>
+		</div>
+		<ul class="con">
+			<li class="clearfix">
+				<div class="l">
+					地推人员
+				</div>
+				<div class="r">
+					<select name="" id="groupAddUser">
+						
+					</select>
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='userdtAddBtn()'>确定修改</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 修改提成 -->
+<div class="modal" ng-show='extractmodalShow'>
+	<div style="height: 4rem;">
+		<div class="title" style="">
+			<span>修改抽成比例</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeExtract()'>
+		</div>
+		<div class="con">
+			<div class="redTT">
+				<span style="margin-right: 1rem;">抽成比例：{{bl}}</span>
+				<span>提现下限：{{xx}}</span>
+			</div>
+			<div class="extractWrap">
+				<span>自定义：</span>
+				<input type="text" ng-model='sBl'>
+				<span style="text-align: center;">|</span>
+				<input type="text" ng-model='sXx'>
+			</div>
+
+			<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='yesExt()'>确定修改</span>
+			</div>
+		</div>
+	</div>
+</div>

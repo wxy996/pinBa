@@ -1,0 +1,71 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="mesViewWrap conWrap" ng-init='show="page1"' style="padding-top: 0.5rem;" ng-show='show=="page1"'>
+	<div class="row">
+		<div style="padding: 0 1rem;">
+			
+			<div class="mesTopWrap">
+				<span class="hand" ng-click='goHis()'>查看历史反馈消息></span>
+			</div>
+			<div class="mesTopWrap2 clearfix">
+				<span>{{tel.title}}：{{tel.content}}</span>
+				<img src="img/ic_tel_nor@2x.png" alt="">
+			</div>
+			<div class="mesTextWrap">
+				<textarea name="" id="" placeholder="反馈意见" ng-model='mes'></textarea>
+				<div>
+					<span class="hand" ng-click='sendBtn()'>反馈</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="conWrap ng-scope" style="padding: .44rem 1.4rem 0.54rem 0.54rem;" ng-show='show=="page2"'>
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<div class="leftTit">
+					<a class="aHref hand" href="javascript:;"  ng-click='show="page1"'>信息反馈&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">查看历史反馈消息</span>
+				</div>
+
+				<div style="box-sizing:border-box;padding: 0.8rem 1.5rem;">
+					<table class="staffTable">
+						<!-- <thead>
+							<th style="width: 20%">门店名称</th>
+							<th style="width: 20%">总拼人数(单店)</th>
+							<th style="width: 20%">系统补齐人数(单店)</th>
+							<th style="width: 20%">消费人数(单店)</th>
+							<th style="width: 20%">消费人数/总拼人数</th>
+						</thead> -->
+						<tbody>
+							<tr ng-repeat='p in shopList'>
+								<td style="width: 80%;text-align: left;">{{p.message}}</td>
+								<td style="width: 20%;text-align: right">{{p.created_at}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

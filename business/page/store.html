@@ -1,0 +1,147 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="ViewWrap conWrap" style="padding-top: 0">
+	<div class="row">
+		<div>
+			<div style="padding-top:.23rem;padding-bottom: .41rem;">
+				<ul class="forTopWrap" style="margin-bottom: 0.58rem">
+					<li>
+						<p>{{tj.total_fight_num}}</p>
+						<p>总拼人数</p>
+					</li>
+					<li>
+						<p>{{tj.total_sale_num}}</p>
+						<p>消费人数</p>
+					</li>
+				</ul>
+
+				<div>
+					<table class="staffTable">
+						<thead>
+							<th style="width: 20%">门店名称</th>
+							<th style="width: 20%">总拼人数(单店)</th>
+							<th style="width: 20%">系统补齐人数(单店)</th>
+							<th style="width: 20%">消费人数(单店)</th>
+							<th style="width: 20%">消费人数/总拼人数</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in shopList'>
+								<td>{{p.shop_name}}</td>
+								<td>{{p.total_buy_num}}</td>
+								<td>{{p.total_polishing_num}}</td>
+								<td>{{p.total_check_num}}</td>
+								<td style="padding-left:0 ">{{p.fx_rate}} %</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 拒绝原因 -->
+<div class="modal" ng-show='nomodalShow'>
+	<div style="height: 4.4rem;">
+		<div class="title" style="">
+			<span>拒绝原因</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeNoModal()'>
+		</div>
+		<div class="con">
+			<textarea name="" id="" placeholder="请写出拒绝原因"></textarea>
+			<div style="text-align: center;">
+				<span class="modalSendBtn">拒绝</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal" ng-show='detailmodalShow'>
+	<div style="height: 5.8rem;">
+		<div class="title" style="">
+			<span>提现详情 </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeDetail()'>
+		</div>
+		<ul class="con conPut">
+			<li class="clearfix" style="margin-bottom: 0.3rem;">
+				<div class="l">
+					提现金额：
+				</div>
+				<div class="r">
+					100元
+				</div>
+			</li>	
+			<li class="clearfix" style="margin-bottom: 0.3rem;">
+				<div class="l">
+					抽成:
+				</div>
+				<div class="r">
+					<span>10%</span>
+					<span style="margin-left: 0.6rem;margin-right: 0.6rem;">|</span>
+					<span>手续： 10%</span>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					实际支付:
+				</div>
+				<div class="r">
+					90元
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					实现方式:
+				</div>
+				<div class="r">
+					微信账号/支付宝账号/银行账号
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					提现账号:
+				</div>
+				<div class="r">
+					1664644+6464
+				</div>
+			</li>
+			<li class="clearfix">
+				<div class="l">
+					开户行:
+				</div>
+				<div class="r">
+					北京支行
+				</div>
+			</li>
+			<li class="clearfix">
+				<div class="l">
+					开户人:
+				</div>
+				<div class="r">
+					张三
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn" style="border: none;">未确认</span>
+				<!-- 未确认 已支付 已确认未支付 -->
+			</li>
+		</ul>
+	</div>
+</div>

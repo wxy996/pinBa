@@ -1,0 +1,110 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+		<div class="leftTit" >
+					<span class="aHref">交易中></span>
+					<span style="display: inline-block; width:2px;margin: 0 0.2rem; height:0.22rem;color: rgba(179,179,179,1);"> | </span>
+					<span>已完成></span>
+				</div>
+			<div style="padding-bottom: .41rem;padding-top: 0.5rem;">
+				
+				<div class="searchWrap" style="padding-bottom: 0.4rem;">
+					<input type="text">
+					<img src="img/btn_search_nor@2x.png" alt="">
+					<div class="jiaoyirightWrap">
+						<p>15000</p>
+						<p>订单总金额</p>
+					</div>
+				</div>
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 12.5%">订单号</th>
+							<th style="width: 12.5%">用户手机号</th>
+							<th style="width: 12.5%">商家</th>
+							<th style="width: 12.5%">店铺</th>
+							<th style="width: 12.5%">店铺归属地</th>
+							<th style="width: 12.5%">时间</th>
+							<th style="width: 12.5%">金额</th>
+							<th style="width: 12.5%">操作</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;">
+								<td>011111</td>
+								<td>1364646464</td>
+								<td>西安肉夹馍</td>
+								<td>西安肉夹馍</td>
+								<td>北京</td>
+								<td>2018-09-09</td>
+								<td>10.00</td>
+								<td style="padding-left: 0">
+									<span class="hand" ng-click='goDetail()' style="color:#333;border: 1px solid #333;border-radius: 0.05rem;display: inline-block;width:1.2rem;text-align: center; height: 0.32rem;line-height: 0.32rem;">查看详情</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 详情 -->
+<div class="modal" ng-show='detailmodalShow'>
+	<div style="height: 6.28rem;width: 14.94rem;overflow-y: auto">
+		<div class="title" style="">
+			<span>查看详情</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeDetailAlert()'>
+		</div>
+		<div style="padding:0.2rem;">
+			<table class="staffTable">
+				<thead>
+							<th style="width: 11.11%">订单号</th>
+							<th style="width: 11.11%">用户手机号</th>
+							<th style="width: 11.11%">商家</th>
+							<th style="width: 11.11%">店铺</th>
+							<th style="width: 11.11%">店铺归属地</th>
+							<th style="width: 11.11%">时间</th>
+							<th style="width: 11.11%">金额</th>
+							<th style="width: 11.11%">订单状态</th>
+							<th style="width: 11.11%">订单时间</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;">
+								<td>011111</td>
+								<td>1364646464</td>
+								<td>西安肉夹馍</td>
+								<td>西安肉夹馍</td>
+								<td>北京</td>
+								<td>2018-09-09</td>
+								<td>10.00</td>
+								<td>已完成</td>
+								<td style="padding-left: 0">
+									2018-09-09
+								</td>
+							</tr>
+						</tbody>
+			</table>
+		</div>
+		<div style="padding: 0.7rem 0.5rem 0.3rem">
+			<span style="font-size:0.16rem;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(55,67,88,1);">共5条数据，共1页，每页显示5条</span>
+			<div style="display: inline-block;float: right">
+				<span style="float: left;margin-right: 0.15rem">
+					<img src="img/p3.png" alt="" style="width:0.22rem;margin-top: 0.01rem">
+				</span>
+				<span  style="float: left;margin-right: 0.15rem;margin-top: 0.05rem">
+					<img src="img/p1.png" alt="" style="width:0.1rem;">
+				</span>
+				<input  style="float: left;margin-right: 0.15rem;font-size: 0.2rem;width: 0.3rem;height: 0.22rem;">1</input>
+				<span  style="float: left;margin-right: 0.15rem;margin-top: 0.05rem">
+					<img src="img/p2.png" alt="" style="width:0.1rem;">
+				</span>
+				<span  style="float: left;margin-right: 0.15rem">
+					<img src="img/p4.png" alt="" style="width:0.22rem;;margin-top: 0.01rem">
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

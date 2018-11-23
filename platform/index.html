@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shop">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script src="js/angular.min.js"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/logo.png">
+	<title>拼吧-平台后台</title>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<div class="container-fluid" ng-controller="pCtrl">
+		<div ng-class="showLeft=='none'?'SignWrap':'boxWrap'">
+			<nav-top></nav-top>
+			<nav-bar style='height: 100%;width: 2.37rem;'></nav-bar>
+			<ng-view style='height: 100%;width: 100%;'></ng-view>	
+		</div>
+	</div>
+
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/angular-route.js"></script>
+
+	<script src="js/reset.js?v=4"></script>
+	<script src="js/index.js?v=9"></script>
+	<script src="js/laydate.js"></script>
+	<script src="js/echarts.simple.min.js"></script> 
+
+	<!-- <script type="text/javascript" src="js/Chart.js-master/src/Chart.js"></script> -->
+
+	
+	<script>
+		var oHtml=$("html");
+		var viewH = $(window).innerWidth();
+		console.log(viewH)
+		if(viewH>1200){
+			var fontSize = viewH / 1920 * 100; 
+			oHtml.css("font-size",+fontSize+"px")
+		}else{
+			var fontSize = 1200 / 1920 * 100; 
+			oHtml.css("font-size",+fontSize+"px")
+		}
+		
+	</script>
+</body>
+</html>

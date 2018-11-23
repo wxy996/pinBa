@@ -1,0 +1,175 @@
+<!-- 店铺装修 -->
+<div class="conWrap ng-scope" style="padding: .44rem 1.4rem 0.54rem 0.2rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<div class="leftTit" style="padding-left: 0.54rem;" ng-show='userInfoType=="super"'>
+					<a class="aHref hand"  href="#/shgl" ng-click="handclk('shgl')">店铺管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">{{shopName}}</span>
+				</div>
+				<div class="leftTit" style="padding-left: 0.54rem;" ng-show='userInfoType=="shop_manager"'>
+					<a class="aHref hand"  href="#/shglManger" ng-click="handclk('shglManger')">店铺管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">{{shopName}}</span>
+				</div>
+				<div class="shopZx clearfix">
+					<div class="l">
+						<div class="clearfix">
+							<div class="l_l">
+								店铺定位 :
+							</div>
+							<div class="l_R">
+							        <!-- 地址输入框 -->
+							        <div class="form-group">
+							           <div id="r-result">请输入:<input type="text" id="suggestId" size="20" value="百度" style="width:5rem"/></div>
+										<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:5remheight:auto; display:none;"></div>
+							        </div>
+							        <!-- 百度地图显示区域 -->
+							        <div class="form-group" id="map" style="width: 90%;height: 3rem;margin-top: 0.2rem;"></div>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="l_l">
+								店铺地址 :
+							</div>
+							<div class="l_R">
+									<select name="" id="city1" style="width: 2.22rem;margin-right: 0.1rem;">
+									</select>
+									<select name="" id="city2" style="width: 2.22rem;margin-right: 0.1rem">
+									</select>
+									<select name="" id="city3" style="width: 2.22rem">
+									</select>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="l_l">
+								联系方式 :
+							</div>
+							<div class="l_R">
+								<input type="text" ng-model='conDetail.shop_tel' maxlength="11">
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="l_l">
+								Logo
+							</div>
+							<div class="l_R">
+								<div class="kuang" style="position: relative;width: 1.46rem;height: 1.46rem;border: 1px solid #999;border-radius: 0.05rem;"> 
+			                        <div class="on on0 logo" style="width: 1.46rem;height: 1.46rem;background: #e9e9e9;background: url(img/btn_uploading_nor@2x.png) no-repeat;background-size: 0.4rem 0.4rem;background-position: center center; overflow: hidden;">
+			                        </div>
+			                        <div class="addhao" style="width: 100%;height: 100%;position: absolute;top: 0;left: 0">
+			                            <input type="file" class="fileinput0 hand" style="width:1.46rem;font-size: 0.12rem; height:100%;opacity: 0; display: inline-block;" id="logo" accept="image/*">
+			                        </div>
+			                     </div>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="l_l">
+								类别 :
+							</div>
+							<div class="l_R">
+								<!-- conDetail.category_id -->
+								<select name="" id="lbId">
+									<option value=""></option>
+								</select>
+								<!-- <input type="text" ng-model=""> -->
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="l_l">
+								关键字1 :
+							</div>
+							<div class="l_R">
+								<select name="" id="tag1" class="select2">
+									<!-- <option value="">选择二级分类</option> -->
+								</select>
+								<!-- <select name="" id="">
+									<option value="">东北菜</option>
+								</select> -->
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="l_l">
+								关键字2 :
+							</div>
+							<div class="l_R">
+								<select name="" id="tag2" class="select2">
+									<!-- <option value="">选择二级分类</option> -->
+								</select>
+								<!-- <select name="" id="">
+									<option value="">东北菜</option>
+								</select> -->
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="l_l">
+								关键字3 :
+							</div>
+							<div class="l_R">
+								<!-- <select name="" id="" class="select2">
+									<option value="">选择二级分类</option>
+								</select> -->
+								<input type="text" ng-model='tag3'>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="l_l">
+								营业时间 :
+							</div>
+							<div class="l_R">
+								<!-- <input type="text" ng-model='conDetail.service_start_time'> -->
+								<input timedate modeltext='startTime' class="hand" type="text" ng-model="conDetail.service_start_time" placeholder="选择开始时间" />
+								~
+								<input timedate modeltext='endTime' class="hand" type="text" ng-model="conDetail.service_end_time" placeholder="选择开始时间" />
+							</div>
+						</div>
+
+						<div style="text-align: center;padding-top: 0.3rem">
+							<span class="hand" style="display: inline-block;width: 1rem;height: 0.35rem;background: #1170b2;color: #fff;font-size: 0.16rem;text-align: center;line-height: 0.35rem;" ng-click='saveZx()'>保存</span>
+						</div>
+						
+					</div>
+					<div class="r" ng-init='delShow="no"'>
+						<p>店铺图片 ： 
+							<span class="hand" style="display: inline-block;float: right;width: 1rem;height: 0.35rem;background: #1170b2;color: #fff;font-size: 0.16rem;text-align: center;line-height: 0.35rem;margin-right: 0.1rem" ng-click='delShow="yes1"' ng-show='delShow=="no"'>删除</span>
+							<span class="hand" style="display: inline-block;float: right;width: 1rem;height: 0.35rem;background: #1170b2;color: #fff;font-size: 0.16rem;text-align: center;line-height: 0.35rem;margin-right: 0.1rem" ng-click='delShow="yes2"' ng-show='delShow=="no"'>排序</span>  
+
+							<span class="hand" style="display: inline-block;float: right;width: 1rem;height: 0.35rem;background: #1170b2;color: #fff;font-size: 0.16rem;text-align: center;line-height: 0.35rem;" ng-click='delShow="no"' ng-show='delShow=="yes1"'>完成</span>
+							<span class="hand" style="display: inline-block;float: right;width: 1rem;height: 0.35rem;background: #1170b2;color: #fff;font-size: 0.16rem;text-align: center;line-height: 0.35rem;" ng-click='saveSort()' ng-show='delShow=="yes2"'>保存排序</span>
+						</p>
+						<div class="imgCon">
+							<div ng-repeat='p in conImgArr' ng-class='delShow=="yes2"?"bg":""' >
+								<div style="background: #efefef;">
+									<img ng-src="{{p.path}}" alt="">()
+									<img class="del" src="img/del.png" alt="" ng-click='delImg(p.id)'  ng-show='delShow=="yes1"' /> 
+								</div>
+								
+								<input type="text" class="sort" ng-show='delShow=="yes2"' ng-model='p.sort'>
+							</div>
+							<div class="kuang add" style="position: relative; width: 1.3rem;height:1.3rem;"  ng-show='delShow=="no"'> 
+		                        <div class="on on0" style="width: 1.3rem;height:1.3rem;background: #e9e9e9;background: url(img/btn_uploading_nor@2x.png) no-repeat; background-size: 0.4rem 0.4rem;background-position: center; overflow: hidden;">
+		                        </div>
+		                        <div class="addhao" style="width: 100%;height: 100%;position: absolute;top: 0;left: 0">
+		                            <input type="file" class="fileinput0 hand" style="width:1.24rem;font-size: 0.12rem; height:100%;opacity: 0; display: inline-block;" id="image" accept="image/*">
+		                        </div>
+		                    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除店铺图片</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='delmodalShow=false'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除这张图片吗?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='delYes()'>确定</span>
+			</div>
+	</div>
+</div>

@@ -1,0 +1,202 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+		<div class="leftTit" >
+					<span ng-class="showType=='type0'?'aHref hand':'hand'" ng-click='navFn(0)'>交易中></span>
+					<span style="display: inline-block; width:2px;margin: 0 0.2rem; height:0.22rem;color: rgba(179,179,179,1);"> | </span>
+					<span ng-class="showType=='type1'?'aHref hand':'hand'" ng-click='navFn(1)'>已完成></span>
+				</div>
+			<div style="padding-bottom: .41rem;padding-top: 0.5rem;">
+				<div style="position: relative;">
+					<div class="searchWrap" style="padding-bottom: 0.4rem;display: inline-block;float: left;margin-right: 0.5rem">
+						<input type="text" style="width:4rem" placeholder="订单号、手机号、商家按回车搜索" id="search" ng-model='keyword'>
+						<img src="img/btn_search_nor@2x.png" alt="" style="left: 3.5rem">
+					</div>
+					<div  style="padding-bottom: 0.4rem;display: inline-block;width: 40%;float: left;">
+						<input def-laydate range="~" class="hand" type="text" ng-model="dateText" style="background-image: -webkit-linear-gradient(top, #fff, #c1c1c1);border: 1px solid #737373;border-radius: 0.05rem;height: 0.44rem;width: 3.2rem;float: left;text-indent: 0.2rem; "  placeholder="请选择时间" />
+        				<span ng-click='changeTime()' class="hand" style="display: inline-block; width: 0.76rem;height: 0.44rem;text-align: center;line-height: 0.44rem;border: 1px solid #737373;border-radius: 0.05rem;background: #c7c7c7;font-size: 0.22rem;background-image: -webkit-linear-gradient(top, #fff, #c1c1c1);float: left;;margin-left: 0.3rem ">查询</span>
+					</div>
+					
+					<div class="jiaoyirightWrap">
+						<p>{{ccc.total_amount}}</p>
+						<p>订单总金额</p>
+					</div>
+				</div>
+				
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 12.5%">订单号</th>
+							<th style="width: 12.5%">用户手机号</th>
+							<th style="width: 12.5%">商户</th>
+							<th style="width: 12.5%">商铺</th>
+							<th style="width: 12.5%">店铺归属地</th>
+							<th style="width: 16.5%">时间</th>
+							<th style="width: 11%">金额</th>
+							<th style="width: 10%">操作</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;" ng-repeat='p in dtList'>
+								<td>{{p.order_no}}</td>
+								<td>{{p.mobile}}</td>
+								<td>{{p.trade_name}}</td>
+								<td>{{p.shop_name}}</td>
+								<td>{{p.city_name}}</td>
+								<td>{{p.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+								<td>{{p.amount}}</td>
+								<td style="padding-left: 0">
+									<span class="hand" ng-click='goDetail(p.id)' style="color:#333;border: 1px solid #333;border-radius: 0.05rem;display: inline-block;width:1.2rem;text-align: center; height: 0.32rem;line-height: 0.32rem;">查看详情</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 详情 -->
+<!-- <div class="modal" ng-show='detailmodalShow'>
+	<div style="height: 6.28rem;width: 14.94rem;overflow-y: auto">
+		<div class="title" style="">
+			<span>查看详情</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeDetailAlert()'>
+		</div>
+		<div style="padding:0.2rem;">
+			<table class="staffTable">
+				<thead>
+							<th style="width: 11.11%">订单号</th>
+							<th style="width: 11.11%">用户手机号</th>
+							<th style="width: 11.11%">商家</th>
+							<th style="width: 11.11%">店铺</th>
+							<th style="width: 11.11%">店铺归属地</th>
+							<th style="width: 11.11%">时间</th>
+							<th style="width: 11.11%">金额</th>
+							<th style="width: 11.11%">订单状态</th>
+							<th style="width: 11.11%">订单时间</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;">
+								<td>011111</td>
+								<td>1364646464</td>
+								<td>西安肉夹馍</td>
+								<td>西安肉夹馍</td>
+								<td>北京</td>
+								<td>2018-09-09</td>
+								<td>10.00</td>
+								<td>已完成</td>
+								<td style="padding-left: 0">
+									2018-09-09
+								</td>
+							</tr>
+						</tbody>
+			</table>
+		</div>
+	</div>
+</div> -->
+<div class="modal" ng-show='detailmodalShow'>
+	<div style="height: 6rem;">
+		<div class="title" style="">
+			<span>详情 </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeDetailAlert()'>
+		</div>
+		<ul class="con conPut">
+			<li class="clearfix">
+				<div class="l">
+					订单号：
+				</div>
+				<div class="r">
+					{{detailCon.order_no}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					商户:
+				</div>
+				<div class="r">
+					{{detailCon.trade_shop.trade.title}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					店铺:
+				</div>
+				<div class="r">
+					{{detailCon.trade_shop.shop_name}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					店铺归属地:
+				</div>
+				<div class="r">
+					{{detailCon.trade_shop.city_name}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					金额:
+				</div>
+				<div class="r">
+					{{detailCon.amount}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					创建时间:
+				</div>
+				<div class="r">
+					{{detailCon.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}
+				</div>
+			</li>
+			<li class="clearfix">
+				<div class="l">
+					支付时间:
+				</div>
+				<div class="r">
+					{{detailCon.pay_time+'000'|date:'yyyy-MM-dd HH:mm:ss'}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					支付状态:
+				</div>
+				<div class="r">
+					{{detailCon.status_pay==-1?"取消":""}}
+					{{detailCon.status_pay==0?"待支付":""}}
+					{{detailCon.status_pay==1?"已支付":""}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					订单状态:
+				</div>
+				<div class="r">
+					{{detailCon.status_closed==1?"已完结":"未完结"}}
+				</div>
+			</li>	
+			
+		</ul>
+	</div>
+</div>

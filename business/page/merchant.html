@@ -1,0 +1,132 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="posterViewWrap merchantViewWrap conWrap" style="padding-top: 0">
+	<div class="row">
+		<div>
+			<div style="padding-top:.61rem;padding-bottom: .41rem;">
+				<div class="leftTit">
+					商户审核列表>
+				</div>
+				<div class="navChangeWrap">
+					<span ng-class='navType=="nav1"?"ac hand":"hand"' ng-click='navBtn("nav1")'>申请中</span>
+					<span ng-class='navType=="nav2"?"ac hand":"hand"' ng-click='navBtn("nav2")'>历史记录</span>
+
+					<span class="hand" ng-show='navType=="nav2"' style="width: 1.68rem;height: 0.4re,;background: #4E4E4E;color: #fff;border-radius: 0.05rem;float: right;margin-right:0 " ng-click='editExtract()'>修改抽成比例</span>
+				</div>
+				<div style="padding-left: 0.8rem;">
+					<table class="staffTable" ng-show='navType=="nav1"'>
+						<thead>
+							<th style="width: 25%;">商户名称</th>
+							<th style="width: 25%;">店铺名称</th>
+							<th style="width: 25%;">申请时间</th>
+							<th style="width: 25%;">操作</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>西安肉夹馍</td>
+								<td>
+									西安肉夹馍（人大店）
+								</td>
+								<td>
+									2018-09-09
+								</td>
+								<td>
+									<span class="hand" style="color: #CF6060;margin-right: 0.1rem" ng-click='noBtn()'>拒绝</span>
+									<span class="hand" style="color: #62D17E">开通</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="staffTable" ng-show='navType=="nav2"'>
+						<thead>
+							<th>商户名称</th>
+							<th>商户电话</th>
+							<th>申请时间</th>
+							<th>平台抽成</th>
+							<th>体现下线</th>
+							<th>操作</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>西安肉夹馍</td>
+								<td>
+									13645454545
+								</td>
+								<td>
+									2018-09-09
+								</td>
+								<td>
+									20%
+								</td>
+								<td>
+									500元
+								</td>
+								<td>
+									<span class="hand" style="color: #CF6060">已拒绝</span>
+								</td>
+							</tr>
+							<tr>
+								<td>西安肉夹馍</td>
+								<td>
+									13645454545
+								</td>
+								<td>
+									2018-09-09
+								</td>
+								<td>
+									20%
+								</td>
+								<td>
+									500元
+								</td>
+								<td>
+									<span class="hand" style="color: #62D17E">已开通</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 拒绝原因 -->
+<div class="modal" ng-show='nomodalShow'>
+	<div style="height: 4.4rem;">
+		<div class="title" style="">
+			<span>拒绝原因</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeNoModal()'>
+		</div>
+		<div class="con">
+			<textarea name="" id="" placeholder="请写出拒绝原因"></textarea>
+			<div style="text-align: center;">
+				<span class="modalSendBtn">拒绝</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 修改提成 -->
+<div class="modal" ng-show='extractmodalShow'>
+	<div style="height: 4rem;">
+		<div class="title" style="">
+			<span>修改抽成比例</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeExtract()'>
+		</div>
+		<div class="con">
+			<div class="redTT">
+				<span style="margin-right: 1rem;">抽成比例： 20%</span>
+				<span>提现下线： 500元</span>
+			</div>
+			<div class="extractWrap">
+				<span>自定义：</span>
+				<input type="text">
+				<span style="text-align: center;">|</span>
+				<input type="text">
+			</div>
+
+			<div style="text-align: center;">
+				<span class="modalSendBtn">确定修改</span>
+			</div>
+		</div>
+	</div>
+</div>

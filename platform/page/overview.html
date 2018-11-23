@@ -1,0 +1,70 @@
+<!-- 概览 -->
+<div class="overViewWrap conWrap">
+	<div class="row">
+		<div class="topCard col-md-offset-1">
+			<div>
+				<p class="p1">{{con.total_sum}}</p>
+				<p class="p2">总券金额(¥)</p>
+			</div>
+		</div>
+		<div class="topCard">
+			<div>
+				<p class="p1">{{con.today_sum}}</p>
+				<p class="p2">今日交易额(¥)</p>
+			</div>
+		</div>
+		<div class="topCard">
+			<div>
+				<p class="p1">{{con.total_trade_shop}}</p>
+				<p class="p2">商户总数(人)</p>
+			</div>
+		</div>
+		<div class="topCard">
+			<div>
+				<p class="p1">{{con.total_custom_user}}</p>
+				<p class="p2">用户数(人)</p>
+			</div>
+		</div>
+		<div class="topCard">
+			<div>
+				<p class="p1">{{con.today_custom_active}}</p>
+				<p class="p2">今日活跃(UV)</p>
+			</div>
+		</div>
+		<div style="padding: 0 .08rem;margin-top: .42rem;">
+			<div style="border-top:.20rem solid #f8f8f8;padding-top:.33rem;padding-bottom: 0rem;">
+				<p class="tit">
+					一.地图商户分布
+				</p>
+				<div class="text-right" id="iWrap" style="">
+					
+				</div>
+			</div>
+		</div>
+		<div style="padding: 0 .08rem;margin-top: 0rem;">
+			<div style="border-top:.20rem solid #f8f8f8;padding-top:.33rem;padding-bottom: .41rem;">
+				<p class="tit">
+					二.新增商户趋势
+				</p>
+				<div class="text-right">
+					<line id="main" legend="legend" item="item" data="data"></line> 
+
+					<!-- <div id="chartTask" style="width: 900px;height:400px;"></div> -->
+				</div>	
+			</div>
+		</div>
+		<div style="padding: 0 .08rem;margin-top: .42rem;">
+			<div style="border-top:.20rem solid #f8f8f8;padding-top:.33rem;padding-bottom: .41rem;">
+				<p class="tit">
+					三.新增用户趋势
+				</p>
+				<div class="text-right">
+					<line id="main2" legend="legend2" item="item2" data="data2"></line> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		 
+	</div>
+</div>

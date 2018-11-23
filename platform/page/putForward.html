@@ -1,0 +1,189 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="putForwardViewWrap conWrap" style="padding-top: 0">
+	<div class="row">
+		<div>
+			<div style="padding-top:.23rem;padding-bottom: .41rem;">
+				<ul class="forTopWrap">
+					<li>
+						<p>{{topCon.total_withdraw_money}}</p>
+						<p>提现总额(￥)</p>
+					</li>
+					<li>
+						<p>{{topCon.total_residue}}</p>
+						<p>未提现总额(￥)</p>
+					</li>
+					<li>
+						<p>{{topCon.total_cnt}}</p>
+						<p>提现订单数(个)</p>
+					</li>
+				</ul>
+				<div class="putSelectWrap clearfix">
+					<span>提现订单：</span>
+					<select name="" id="typeSelect">
+						<option value="99">全部</option>
+						<option value="0">未确认</option>
+						<option value="1">已确认未支付</option>
+						<option value="2">已支付</option>
+						<option value="-1">驳回</option>
+					</select>
+					<!-- <button>搜索</button> -->
+				</div>
+				<div>
+					<table class="staffTable">
+						<thead>
+							<th>商家名称</th>
+							<th>商家余额(￥)</th>
+							<th>提现余额(￥)</th>
+							<th>申请时间</th>
+							<th>状态</th>
+							<th>操作</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in forList'>
+								<td>{{p.trade_shop.shop_name}}</td>
+								<td>{{p.trade_shop.account_current}}</td>
+								<td>{{p.amount_real}}</td>
+								<td>
+									{{p.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}
+								</td>
+								<td>
+									<span ng-show='p.status==0'>未确认</span>
+									<span ng-show='p.status==1'>已确认未支付</span>
+									<span ng-show='p.status==2'>已支付</span>
+									<span ng-show='p.status==-1'>驳回</span>
+								</td>
+								<td style="padding-left:0 ">
+									<span ng-show='p.status==0' class="hand" style="color:rgba(207,96,96,1);margin-right: 0.1rem" ng-click='noBtn(p.id)'>驳回</span>
+									<span ng-show='p.status==0' class="hand" style="color:rgba(98,209,126,1);" ng-click='openModal(p.id,"unpaid","通过")'>确认</span>
+									<span ng-show='p.status==1' class="hand" style="color:rgba(98,209,126,1);" ng-click='openModal(p.id,"paid","结单")'>结单</span>
+									<span class="hand" ng-click='goDetail(p.id)' style="color: #43A0FF">查看详情</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 驳回原因 -->
+<div class="modal" ng-show='nomodalShow'>
+	<div style="height: 4.4rem;">
+		<div class="title" style="">
+			<span>驳回原因</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeNoModal()'>
+		</div>
+		<div class="con">
+			<textarea name="" id="" placeholder="请写出驳回原因" ng-model='cfText'></textarea>
+			<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='jjBtn()'>驳回</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal" ng-show='openmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>操作</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeopenAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			确定要{{txt}}?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='sureOpen()'>确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>
+<div class="modal" ng-show='detailmodalShow'>
+	<div style="height: 5.8rem;">
+		<div class="title" style="">
+			<span>提现详情 </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeDetail()'>
+		</div>
+		<ul class="con conPut">
+			<li class="clearfix" style="margin-bottom: 0.3rem;">
+				<div class="l">
+					提现金额：
+				</div>
+				<div class="r">
+					{{detailCon.amount}}
+				</div>
+			</li>	
+			<li class="clearfix" style="margin-bottom: 0.3rem;">
+				<div class="l">
+					抽成:
+				</div>
+				<div class="r">
+					<span> {{detailCon.trade_shop.draw_scale}}</span>
+					<span style="margin-left: 0.6rem;margin-right: 0.6rem;">|</span>
+					<span>手续： {{detailCon.trade_shop.translate_money}}</span>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					实际支付:
+				</div>
+				<div class="r">
+					{{detailCon.amount_real}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					实现方式:
+				</div>
+				<div class="r">
+					<!--  0银行卡 1微信 2支付宝 -->
+					{{detailCon.type==0?"银行卡":""}}
+					{{detailCon.type==1?"微信":""}}
+					{{detailCon.type==2?"支付宝":""}}
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					提现账号:
+				</div>
+				<div class="r">
+					{{detailCon.cash_card}}
+				</div>
+			</li>
+			<li class="clearfix">
+				<div class="l">
+					开户人:
+				</div>
+				<div class="r">
+					{{detailCon.bank_man}}
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn" style="border: none;" ng-show='detailCon.status==0'>未确认</span>
+				<span class="modalSendBtn" style="border: none;" ng-show='detailCon.status==1'>已确认未支付</span>
+				<span class="modalSendBtn" style="border: none;" ng-show='detailCon.status==2'>已支付</span>
+				<span class="modalSendBtn" style="border: none;" ng-show='detailCon.status==-1'>驳回</span>
+				<!-- 未确认 已支付 已确认未支付 -->
+			</li>
+		</ul>
+	</div>
+</div>

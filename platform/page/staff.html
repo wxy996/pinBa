@@ -1,0 +1,343 @@
+<!-- 员工管理 -->
+<!-- 720 575 -->
+<div class="staffViewWrap conWrap">
+	<div class="row">
+		<div style="padding: 0 0.8rem;">
+			<div style="padding-top:.61rem;padding-bottom: .41rem;">
+				<div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					<a href="javascript:;" class="btn-blueBig" type="submit" ng-click='peopleBtn("add")'>+ 添加成员</a>
+				</div>
+				<div>
+					<table class="staffTable">
+						<thead>
+							<th style="width: 20%">账号</th>
+							<th style="width: 20%">昵称</th>
+							<th style="width: 20%">手机号</th>
+							<th style="width: 20%">角色(用户组)</th>
+							<th style="width: 20%">操作</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in peopleList'>
+								<td>{{p.username}}</td>
+								<td>{{p.realname}}</td>
+								<td>{{p.mobile}}</td>
+								<td>{{p.group.group_name}}</td>
+								<td>
+									<img src="img/btn_edit_nor@2x.png" alt="" style="width: 0.24rem;"  ng-click='peopleBtn("edit",p)'>
+									<img src="img/btn_delete_nor@2x.png" alt="" style="width: 0.18rem;"  ng-click='delBtn(p)'>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+			<div style="padding-top:.61rem;padding-bottom: .41rem;border-top:.20rem solid #f8f8f8;">
+				<div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					<a href="javascript:;" class="btn-blueBig" type="submit"  ng-click='quanxianBtn("add")'>+ 新增用户组</a>
+				</div>
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 7.6%">用户组名称</th>
+							<th style="width: 7.6%">概览</th>
+							<th style="width: 7.6%">员工管理</th>
+							<th style="width: 7.6%">广告审核</th>
+							<th style="width: 7.6%">商户管理</th>
+							<th style="width: 7.6%">提现管理</th>
+							<th style="width: 7.6%">地推管理</th>
+							<th style="width: 7.6%">账号管理</th>
+							<th style="width: 7.6%">交易管理</th>
+							<th style="width: 7.6%">反馈信息管理</th>
+							<th style="width: 7.6%">广告管理</th>
+							<th style="width: 7.6%">反馈建议</th>
+							<th style="width: 7.6%">操作</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in groupList'>
+								<td>{{p.group_name}}</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.OVERVIEW_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.EMPLOYEE_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.AD_CHECK'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.BUSINESS_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.WITHDRAW_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.PUSH_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.USER_CLIENT_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.TRADE_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.INFORMATION_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.AD_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.SUGGEST_SYS'>
+								</td>
+								<td>
+									<!-- <img src="img/btn_edit_nor@2x.png" alt="" style="width: 0.24rem;"> -->
+									<img src="img/btn_edit_nor@2x.png" alt="" style="width: 0.18rem;float: none;margin-left: 0" ng-click='quanxianBtn("edit",p)'>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{groupCount.total}}条数据，共{{groupCount.total_pages}}页,每页显示{{groupCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPageGroup(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPageGroup()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='group_pages'></input>
+						<span class="sImg hand" ng-click="nextPageGroup()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPageGroup(groupCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- 操作日志 -->
+			<div style="padding-top:.61rem;padding-bottom: .41rem;border-top:.20rem solid #f8f8f8;">
+				<div class="" style="margin-bottom: 0.51rem;">
+					<span>操作日志></span>
+				</div>
+				<div>
+					<table class="staffTable">
+						<thead>
+							<th style="width:20%">操作时间</th>
+							<!-- <th style="width: 25%">操作员</th> -->
+							<th style="width: 80%">操作内容</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in logList'>
+								<td>{{p.updated_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+								<!-- <td>{{p.mobile}}</td> -->
+								<td>{{p.description}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+				</div>
+				<div class="navPage">
+					<span class="p">共{{logCount.total}}条数据，共{{logCount.total_pages}}页,每页显示{{logCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPagelog(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPagelog()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='log_pages'></input>
+						<span class="sImg hand" ng-click="nextPagelog()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPagelog(logCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="loading" ng-show='showLoad'></div>
+
+<!-- 新建编辑人员 -->
+<div class="modal" ng-show='modalShow'>
+	<div style="height: 4.5rem;">
+		<div class="title" style="">
+			<span>{{peopleType=='add'?'添加店员':'修改店员信息'}} </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtn()'>
+		</div>
+		<ul class="con">
+			<li class="clearfix">
+				<div class="l">
+					员工账号
+				</div>
+				<div class="r">
+					<input type="text" placeholder="员工账号" ng-model='addUserZh'>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					员工姓名
+				</div>
+				<div class="r">
+					<input type="text" placeholder="员工姓名" ng-model='addUserName'>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					手机号
+				</div>
+				<div class="r">
+					<input type="text" placeholder="手机号" ng-model='addUserTel'  maxlength="11">
+				</div>
+			</li>	
+			<!-- <li class="clearfix">
+				<div class="l">
+					密码
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123" ng-model='addUserPas'>
+				</div>
+			</li>	 -->
+	<!-- 		<li class="clearfix">
+				<div class="l">
+					新密码
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123" style="width: 2.43rem;">
+				
+						<a href="javascript:;" class="modalBtn" ng-click='showBtn()'>密码重置</a>
+		
+				</div>
+			</li>	 -->
+			<li class="clearfix">
+				<div class="l">
+					权限
+				</div>
+				<div class="r">
+					<select name="" id="groupAddUser">
+						
+					</select>
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='userAddBtn()'>{{peopleType=='add'?'提交':'确定修改'}}</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 删除 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除员工信息</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除此用户?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn" ng-click='sureDel()'>确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>
+<!-- 新建 权限组-->
+<div class="modal" ng-show='qxmodalShow'>
+	<div style="height: 5.7rem;">
+		<div class="title" style="">
+			<span>{{quanxianType=='add'?'新增用户组':'修改用户组'}} </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeqxBtn()'>
+		</div>
+		<ul class="con">
+			<li class="clearfix">
+				<div class="l" style="text-align: left;">
+					用户组名称
+				</div>
+				<div class="r">
+					<input type="text" placeholder="用户组名称" ng-model='addQxName'>
+				</div>
+			</li>
+			<li class="clearfix">
+				<div style="height:0.6rem;line-height: 0.6rem; font-size:0.18rem;font-family:STSongti-SC-Bold;font-weight:bold;color:rgba(51,51,51,1);">
+					权限
+				</div>
+				<div class="cheboxWrap cheboxWrap2">
+					<label for="c1">
+						<input id="c1" class="qxzName" name='qxzName' type="checkbox" value='1'  ng-checked='editUserGroup.OVERVIEW_SYS'>
+						概览
+					</label>
+					<label for="c2">
+						<input id="c2" class="qxzName" name='qxzName' type="checkbox" value='2' ng-checked='editUserGroup.EMPLOYEE_SYS'>
+						员工管理
+					</label>
+					<label for="c3">
+						<input id="c3" class="qxzName" name='qxzName' type="checkbox" value='4' ng-checked='editUserGroup.AD_CHECK'>
+						广告审核
+					</label>
+					<label for="c4">
+						<input id="c4" class="qxzName" name='qxzName' type="checkbox" value='8' ng-checked='editUserGroup.BUSINESS_SYS'>
+						商户管理
+					</label>
+					<label for="c5">
+						<input id="c5" class="qxzName" name='qxzName' type="checkbox" value='16' ng-checked='editUserGroup.WITHDRAW_SYS'>
+						提现管理
+					</label>
+					<label for="c6">
+						<input id="c6" class="qxzName" name='qxzName' type="checkbox" value='32' ng-checked='editUserGroup.PUSH_SYS'>
+						地推管理
+					</label>
+					<label for="c7">
+						<input id="c7" class="qxzName" name='qxzName' type="checkbox" value='64' ng-checked='editUserGroup.USER_CLIENT_SYS'>
+						客户端用户管理
+					</label>
+					<label for="c8">
+						<input id="c8" class="qxzName" name='qxzName' type="checkbox" value='128' ng-checked='editUserGroup.TRADE_SYS'>
+						交易管理
+					</label>
+					<label for="c9">
+						<input id="c9" class="qxzName" name='qxzName' type="checkbox" value='256' ng-checked='editUserGroup.INFORMATION_SYS'>
+						反馈信息管理
+					</label>
+					<label for="c11">
+						<input id="c11" class="qxzName" name='qxzName' type="checkbox" value='512' ng-checked='editUserGroup.AD_SYS'>
+						广告管理
+					</label>
+					<label for="c10">
+						<input id="c10" class="qxzName" name='qxzName' type="checkbox" value='1024' ng-checked='editUserGroup.SUGGEST_SYS'>
+						反馈意见
+					</label>
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='addQx()'>{{quanxianType=='add'?'保存':'确定修改'}}</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</li>
+		</ul>
+	</div>
+</div>

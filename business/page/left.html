@@ -1,0 +1,90 @@
+<div class="leftPageWrap" ng-show='showLeft=="show"'>
+	<div class="logoWrap">
+		<img src="img/img_logo_nor@2x.png" alt="">
+	</div>
+	<ul class="leftNav" ng-show='leftType=="home"'>
+		<li ng-show='manager'>
+			<a href="#/shglManger" ng-class="leftNav=='shglManger'?'ac':''" ng-click="handclk('shglManger')">
+				<img src="img/sh.png" alt="">
+				<span>店铺管理</span>
+			</a>
+		</li>
+		<li ng-show='leftNavOnce.OVERVIEW_SYS'>
+			<a href="#/overView" ng-class="leftNav=='overView'?'ac':''" ng-click="handclk('overView')">
+				<img src="img/ic_overview_nor@2x.png" alt="">
+				<span>概&nbsp&nbsp&nbsp&nbsp览</span>
+			</a>
+		</li>
+		<li ng-show='leftNavOnce.SHOP_SYS'>
+			<a href="#/shgl" ng-class="leftNav=='shgl'?'ac':''" ng-click="handclk('shgl')">
+				<img src="img/sh.png" alt="">
+				<span>店铺管理</span>
+			</a>
+		</li>
+		<li ng-show='leftNavOnce.WITHDRAW_SYS'>
+			<a href="#/putForward" ng-class="(leftNav=='putForward'||leftNav=='putDetail')?'ac':''" ng-click="handclk('putForward')">
+				<img src="img/ic_withdrawal audit_nor@2x.png" alt="">
+				<span>提现管理</span>
+			</a>
+		</li>
+		<li ng-show='leftNavOnce.EMPLOYEE_SYS'>
+			<a href="#/staff" ng-class="leftNav=='staff'?'ac':''" ng-click="handclk('staff')">
+				<img src="img/yggl.png" alt="">
+				<span>员工管理</span>
+			</a>
+		</li>
+		<li ng-show='leftNavOnce.STORE_STATISTIC'>
+			<a href="#/store" ng-class="leftNav=='store'?'ac':''" ng-click="handclk('store')">
+				<img src="img/md.png" alt="">
+				<span>门店统计</span>
+			</a>
+		</li>
+		
+		<li ng-show='leftNavOnce.INFORMATION_FEEDBACK'>
+			<a href="#/mes" ng-class="leftNav=='mes'?'ac':''" ng-click="handclk('mes')">
+				<img src="img/mes.png" alt="">
+				<span>信息反馈</span>
+			</a>
+		</li>
+
+		
+	</ul>
+	<ul class="leftNav" ng-show='leftType=="shop"'>
+		<li ng-show='ygPowerInfo.DECORATION_SYS'>
+			<a ng-href="#/shopRenovation?shopId={{shopId}}&shopName={{shopName}}" ng-class="leftNav=='shopRenovation'?'ac':''" ng-click="handclk('shopRenovation',shopId,shopName)">
+				<img src="img/x1.png" alt="">
+				<span>店铺装修</span>
+			</a>
+		</li>
+		<li ng-show='ygPowerInfo.COUPON_SYS'>
+			<a href="#/shopCoupon?shopId={{shopId}}&shopName={{shopName}}" ng-class="leftNav=='shopCoupon'?'ac':''" ng-click="handclk('shopCoupon',shopId,shopName)">
+				<img src="img/x2.png" alt="">
+				<span>发放优惠券</span>
+			</a>
+		</li>
+		<li ng-show='ygPowerInfo.SHOP_ASSISTANT'>
+			<a href="#/shopStaff?shopId={{shopId}}&shopName={{shopName}}" ng-class="(leftNav=='shopStaff'||leftNav=='putDetail')?'ac':''" ng-click="handclk('shopStaff',shopId,shopName)">
+				<img src="img/x3.png" alt="">
+				<span>店员管理</span>
+			</a>
+		</li>
+		<li ng-show='ygPowerInfo.ADVERTISEMENT_SYS'>
+			<a href="#/shopAd?shopId={{shopId}}&shopName={{shopName}}" ng-class="leftNav=='shopAd'?'ac':''" ng-click="handclk('shopAd',shopId,shopName)">
+				<img src="img/x4.png" alt="">
+				<span>广告投放</span>
+			</a>
+		</li>
+		<li ng-show='ygPowerInfo.ASSET_STATISTIC'>
+			<a href="#/shopMoney?shopId={{shopId}}&shopName={{shopName}}" ng-class="leftNav=='shopMoney'?'ac':''" ng-click="handclk('shopMoney',shopId,shopName)">
+				<img src="img/x5.png" alt="">
+				<span>资产统计</span>
+			</a>
+		</li>
+		<li ng-show='ygPowerInfo.DATA_STATISTIC'>
+			<a href="#/shopData?shopId={{shopId}}&shopName={{shopName}}" ng-class="leftNav=='shopData'?'ac':''" ng-click="handclk('shopData',shopId,shopName)">
+				<img src="img/x6.png" alt="">
+				<span>数据统计</span>
+			</a>
+		</li>
+	</ul>
+</div>

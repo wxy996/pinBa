@@ -1,0 +1,131 @@
+<!-- 店铺管理-->
+<!-- 720 575 -->
+<div class="staffViewWrap conWrap">
+	<div class="row">
+		<div style="padding: 0 0.8rem;">
+			<div style="padding-top:.61rem;padding-bottom: .41rem;">
+			<!-- 	<div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					<a href="javascript:;" class="btn-blueBig" type="submit" ng-click='shopBtn("add")'>+ 添加店铺</a>
+				</div> -->
+				<div>
+					<table class="staffTable">
+						<thead>
+							<th style="width: 25%">店铺序号</th>
+							<th style="width: 25%">店铺名称</th>
+							<th style="width: 25%">店铺地址</th>
+							<th style="width: 25%">店长</th>
+							<!-- <th style="width: 15%">总管理员</th> -->
+							<!-- <th style="width: 15%">操作</th> -->
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in shopList'>
+								<td>{{p.id}}</td>
+								<td> 
+									<a ng-href="#/shopRenovation?shopId={{p.id}}&shopName={{p.shop_name}}" ng-click="handclk('shopRenovation',p.id,p.shop_name)">{{p.shop_name}}</a>
+								</td>
+								<td>{{p.province_name}}{{p.city_name}}{{p.area_name}}</td>
+								<td>{{p.username}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 新建店铺 编辑店长 -->
+<div class="modal" ng-show='modalShow'>
+	<div style="height:4.8rem;">
+		<div class="title" style="">
+			<span>{{shopType=='add'?'添加店铺':'修改店长'}} </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtn()'>
+		</div>
+		<ul class="con">
+			<li class="clearfix" ng-show="shopType=='add'">
+				<div class="l">
+					商铺名称
+				</div>
+				<div class="r">
+					<input type="text" placeholder="商铺名称" ng-model='shopname'>
+				</div>
+			</li>	
+			<li class="clearfix" ng-show="shopType=='add'">
+				<div class="l">
+					归属
+				</div>
+				<div class="r">
+					<select name="" id="city1" style="width: 1.2rem;margin-right: 0.1rem;">
+					</select>
+					<select name="" id="city2" style="width: 1.2rem;margin-right: 0.1rem">
+					</select>
+					<select name="" id="city3" style="width: 1.2rem">
+					</select>
+				</div>
+			</li>
+			<li class="clearfix" ng-show="shopType=='add'">
+				<div class="l">
+					营业执照
+				</div>
+				<div class="r">
+					<div class="kuang" style="position: relative;"> 
+                        <div class="on on0" style="width: 1.24rem;height: 0.8rem;background: #e9e9e9;background: url(img/add.png) no-repeat;background-size: 100% 100%;overflow: hidden;">
+                        </div>
+                        <div class="addhao" style="width: 100%;height: 100%;position: absolute;top: 0;left: 0">
+                            <input type="file" class="fileinput0 hand" style="width:1.24rem;font-size: 0.12rem; height:100%;opacity: 0; display: inline-block;" id="image" accept="image/*">
+                        </div>
+                        <input type="hidden" name="pic" class="input0">
+                     </div>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					店长
+				</div>
+				<div class="r">
+					<select name="" id="owner">
+						
+					</select>
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='saveShop()'>{{shopType=='add'?'提交':'确定修改'}}</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 删除 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除店铺</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeDel()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除此店铺?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='delYes()'>确定</span>
+			</div>
+	</div>
+</div>

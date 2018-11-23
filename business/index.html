@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shop">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script src="js/angular.min.js"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/logo.png">
+	<title>拼吧-商户后台</title>
+	<style>
+		.anchorBL{
+			display:none;
+		}
+		/*
+			超级管理员 zhangsan111 123456aa
+			店长 zhangxiaosan01 
+			店员 zhangxiaosan02 
+
+
+			超级管理员 超。super
+			集团员工 集 trade_employee
+			店长 长 shop_manager
+			店员 店 shop_employee
+		*/
+	</style>
+</head>
+<body>
+	<div class="container-fluid" ng-controller="pCtrl">
+		<div ng-class="showLeft=='none'?'SignWrap':'boxWrap'">
+			<nav-top></nav-top>
+			<nav-bar style='height: 100%;width: 2.37rem;'></nav-bar>
+			<ng-view style='height: 100%;width: 100%;'></ng-view>	
+		</div>
+	</div>
+	<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=bXSlERSzKDdF7GIt5m14GB6RkKXxZorn"></script>
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/angular-route.js"></script>
+
+	<script src="js/reset.js?v=4"></script>
+	<script src="js/city.js?v=1"></script>
+	<script src="js/index.js?v=9"></script>
+	<script src="js/laydate.js"></script> 
+	<script src="js/echarts.min.js"></script> 
+
+	<script>
+		var oHtml=$("html");
+		var viewH = $(window).innerWidth();
+		console.log(viewH)
+		if(viewH>1200){
+			var fontSize = viewH / 1920 * 100; 
+			oHtml.css("font-size",+fontSize+"px")
+		}else{
+			var fontSize = 1200 / 1920 * 100; 
+			oHtml.css("font-size",+fontSize+"px")
+		}
+		
+	</script>
+</body>
+</html>

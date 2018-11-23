@@ -1,0 +1,193 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="display: no2ne;"  ng-show='showDetail' ng-init='showDetail=true'>
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<ul class="forTopWrap" style="margin-bottom: 0.58rem">
+					<li>
+						<p>{{shopTop.current_residue_money}}</p>
+						<p>剩余可提现金额总计</p>
+					</li>
+					<li>
+						<p>{{shopTop.total_money}}</p>
+						<p>账户总销售额</p>
+					</li>
+				</ul>
+				<div style="padding:0 0.8rem">
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 20%">店铺序号</th>
+							<th style="width: 40%">店铺名称</th>
+							<th style="width: 20%">账户余额</th>
+							<th style="width: 20%">操作</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;" ng-repeat='p in shopList'>
+								<td>{{$index+1}}</td>
+								<td>{{p.shop_name}}</td>
+								<td>{{p.account_current}}</td>
+								<td>
+									<span class="hand" ng-click='goTx("add",p.id,p.account_current)' style="color:#fff;border-radius: 0rem; display: inline-block;width:0.66rem;text-align: center;background: #3699ff; height: 0.3rem;line-height: 0.3rem;font-size: 0.18rem">提现</span>
+									<a class="hand" href="javascript:;" ng-click="showDetailBtn(p.id)" style="color:#fff;border-radius: 0rem; display: inline-block;width:0.96rem;text-align: center;background: #3699ff; height: 0.3rem;line-height: 0.3rem;font-size: 0.18rem;text-decoration: none;">提现列表</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="earthViewWrap conWrap" style="padding-top:0.44rem;" ng-show='!showDetail'>
+	<div class="row">
+		<div>
+			<div style="padding: .41rem 0.12rem 0 0.54rem;">
+				<div class="leftTit" style="">
+					<a class="aHref hand" href="javascript:;" ng-click='goHref()'>提现管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">详情</span>
+				</div>
+				<div class="putSelectWrap clearfix" style="padding-left: 0.8rem">
+					<span>提现订单：</span>
+					<select name="" id="typeSelect">
+						<option value="all">全部</option>
+						<option value="0">待审核</option>
+						<option value="1">已确认未支付</option>
+						<option value="2">已支付</option>
+						<option value="-1">驳回</option>
+					</select>
+				</div>
+				<div style="padding-left: 0.8rem">
+					<table class="staffTable">
+						<thead>
+							<tr><th style="width: 14.2%">单号</th>
+							<!-- <th style="width: 14.2%">账户余额(￥)</th> -->
+							<th style="width: 14.2%">提现余额(￥)</th>
+							<th style="width: 14.2%">提现申请时间</th>
+							<th style="width: 14.2%">提现人</th>
+							<th style="width: 14.2%">提现状态</th>
+							<th style="width: 14.2%">提现方式</th>
+							<th style="width: 14.2%">操作</th>
+						</tr></thead>
+						<tbody>
+							<tr ng-repeat='p in shopDetailList'>
+								<td>{{p.draws_no}}</td>
+								<td>{{p.amount}}</td>
+								<td>{{p.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+								<td>{{p.bank_man}}</td>
+								<td>
+									{{p.status==-1?"驳回":""}}
+									{{p.status==0?"待审核":""}}
+									{{p.status==1?"已确认未支付":""}}
+									{{p.status==2?"已支付":""}}
+								</td>
+								<td>
+									{{p.type==0?"银行卡":""}}
+									{{p.type==1?"微信":""}}
+									{{p.type==2?"支付宝":""}}
+								</td>
+								<td>
+									<img ng-show='p.status==0' src="img/btn_edit_nor@2x.png" alt="" style="width: 0.24rem;" ng-click='goTx("edit",p.id,"",p)'>
+									<img src="img/btn_delete_nor@2x.png" alt="" style="width: 0.18rem;" ng-click="delBtn(p.id)">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 提现 -->
+<div class="modal" ng-show='txmodalShow'>
+	<div style="height: 5rem;" id="txWrap">
+		<div class="title" style="">
+			<span>提现申请</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeTx()'>
+		</div>
+		<ul class="con" style="margin-bottom: 0.3rem;padding-top: 0.3rem">
+			<li class="clearfix">
+				<div class="l">
+					账户余额
+				</div>
+				<div class="r">
+					<span style="font-size: 0.22rem;line-height: 0.35rem;">¥ {{ye}}</span>
+				</div>
+			</li>
+			<li class="clearfix">
+				<div class="l">
+					提现金额
+				</div>
+				<div class="r">
+					<input type="text" placeholder="单位（元）" style="width: 3rem;" ng-model='amount'>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					提现渠道
+				</div>
+				<div class="r">
+					<!-- <input type="text" placeholder="123123" style="width: 3rem;"> -->
+					<select name="" id="txType"  style="width: 3rem;background: #fff;">
+						<option value="0">银行卡</option>
+						<option value="1">微信</option>
+						<option value="2">支付宝</option>
+					</select>
+				</div>
+			</li>
+			<li class="clearfix">
+				<div class="l">
+					收账姓名
+				</div>
+				<div class="r">
+					<input type="text" placeholder="收账姓名" style="width: 3rem;" ng-model='bank_man'>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					提现渠道账号
+				</div>
+				<div class="r">
+					<input type="text" placeholder="提现渠道账号" style="width: 3rem;" ng-model='cash_card'>
+				</div>
+			</li>	
+		</ul>
+		<div style="text-align: center;">
+			<span class="modalSendBtn hand" ng-click='yesTx()'>确定提现</span>
+		</div>
+	</div>
+</div>
+<!-- 删除-->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>操作</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='delmodalShow=false'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			确定要删除?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='sureDel()'>确定</span>
+		</div>
+	</div>
+</div>

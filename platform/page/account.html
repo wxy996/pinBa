@@ -1,0 +1,88 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="earthViewWrap conWrap" style="padding-top: 1.09rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<div class="searchWrap">
+					<input type="text" id="search" placeholder="输入商家手机号，按回车进行搜索">
+					<img src="img/btn_search_nor@2x.png" alt="">
+				</div>
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 18%">商家名称</th>
+							<th style="width: 18%">手机号</th>
+							<th style="width: 18%">注册时间</th>
+							<th style="width: 18%">状态</th>
+							<th style="width: 28%">操作</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;" ng-repeat='p in userList'>
+								<td>{{p.realname}}</td>
+								<td>{{p.mobile}}</td>
+								<td>{{p.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+								<td>{{p.status==1?"正常":"封号"}}</td>
+								<!-- 正常 查封 -->
+								<td style="padding-left: 0">
+									<span class="hand" ng-show='p.status==1' ng-click='noDetail(p.id)' style="color:#333;border: 1px solid #333;border-radius: 0.05rem;display: inline-block;width:0.64rem;text-align: center; height: 0.32rem;line-height: 0.32rem;">查封</span>
+									<span class="hand" ng-show='p.status!=1' ng-click='openModal(p.id)' style="color:#333;border: 1px solid #333;border-radius: 0.05rem;display: inline-block;width:0.64rem;text-align: center; height: 0.32rem;line-height: 0.32rem;">解封</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 查封 -->
+<div class="modal" ng-show='nomodalShow'>
+	<div style="height: 4.4rem;">
+		<div class="title" style="">
+			<span>查封</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeNoModal()'>
+		</div>
+		<div class="con">
+			<textarea name="" id="" placeholder="请写明查封原因"  ng-model='cfText'></textarea>
+			<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='jjBtn()'>查封</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 解封 -->
+<div class="modal" ng-show='openmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>操作</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeopenAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			确定要解封?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='sureOpen()'>确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

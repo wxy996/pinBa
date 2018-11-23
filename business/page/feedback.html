@@ -1,0 +1,110 @@
+<!-- 用户反馈 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+			<div class="leftTit" >
+					<span ng-class='navType=="nav1"?"aHref hand":"hand"' ng-click='changeNav("nav1")'>用户反馈></span>
+					<span style="display: inline-block; width:2px;margin: 0 0.2rem; height:0.22rem;color: rgba(179,179,179,1);"> | </span>
+					<span ng-class='navType=="nav2"?"aHref hand":"hand"' ng-click='changeNav("nav2")'>商家反馈></span>
+					<span style="display: inline-block; width:2px;margin: 0 0.2rem; height:0.22rem;color: rgba(179,179,179,1);"> | </span>
+					<span ng-class='navType=="nav3"?"aHref hand":"hand"' ng-click='changeNav("nav3")'>操作日志></span>
+			</div>
+			<div style="padding-bottom: .41rem;padding-top: 0.5rem;">
+				
+				<div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					<span style="font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(55,67,88,1);">客服电话：</span>
+					<span style="font-size:0.18rem;margin-right: 0.3rem; font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">01-1111111</span>
+					<a href="javascript:;" style="width: 0.94rem;height: 0.32rem;line-height: 0.32rem;font-size: 0.18rem;" class="btn-blueBig" type="submit" ng-click='editTelBtn()'>修改</a>
+				</div>
+				<div>
+					<table class="staffTable staffTable2" ng-show='navType=="nav1"||navType=="nav2"'>
+						<thead>
+							<th style="width: 58%;text-align: left;text-indent: 0.3rem">反馈问题</th>
+							<th style="width: 13%">日期</th>
+							<th style="width: 13%">用户</th>
+							<th style="width: 13%">操作</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;">
+								<td style="text-align: left;text-indent: 0.3rem">
+									啊十分大打发打发阿法士大夫啊大法师地方阿法大法师大法师的发三的发
+								</td>
+								<td>1364646464</td>
+								<td>阿斯顿</td>
+								<td style="padding: 0">
+									<span class="hand" ng-click='backMes()' style="color:#333;border: 1px solid #333;border-radius: 0.05rem;display: inline-block;width:0.64rem;text-align: center; height: 0.32rem;line-height: 0.32rem;">回复</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="staffTable staffTable2" ng-show='navType=="nav3"'>
+						<thead>
+							<th style="width:20%;">操作时间</th>
+							<th style="width:60%">操作人</th>
+							<th style="width:20 13%">操作行为</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;">
+								<td>
+									2018-09-09
+								</td>
+								<td>阿斯顿</td>
+								<td style="padding: 0">
+									正常操作
+								</td>
+							</tr>
+							<tr style="line-height: 0.65rem;">
+								<td>
+									2018-09-09
+								</td>
+								<td>阿斯顿</td>
+								<td style="padding: 0">
+									违规操作
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 修改客服电话 -->
+<div class="modal" ng-show='editmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>修改客服电话</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<ul class="con" style="margin-bottom: 0.9rem;padding-top: 0.6rem">
+			<li class="clearfix">
+				<div class="l">
+					客服电话
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123" style="background: #e6e6e6;border: none;">
+				</div>
+			</li>	
+		</ul>
+		<div style="text-align: center;">
+				<span class="modalSendBtn">确定修改</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>
+<!-- 回复 -->
+<div class="modal" ng-show='backMesmodalShow'>
+	<div style="height: 4.4rem;">
+		<div class="title" style="">
+			<span>回复</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeNoModal()'>
+		</div>
+		<div class="con">
+			<textarea name="" id="" placeholder="请写出回复内容"></textarea>
+			<div style="text-align: center;">
+				<span class="modalSendBtn">确定回复</span>
+			</div>
+		</div>
+	</div>
+</div>

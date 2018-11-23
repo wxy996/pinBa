@@ -1,0 +1,53 @@
+<!-- 概览 -->
+<div class="overViewWrap conWrap" style="padding-left: 1.25rem;padding-right: 0.9rem;">
+	<div ng-show='leftNavOnce.SHOP_SYS'>
+		<a  href="#/shgl" ng-class="leftNav=='shgl'?'ac':''" ng-click="handclk('shgl')" style="display: inline-block;width: 100%;height: 100%;">
+			<img src="img/g2.png" alt="">
+			<p class="pTit">店铺管理</p>
+			<div>
+				<p>优点:</p>
+				<p>独立管理模式，匹配更灵活，功能更强大。</p>
+			</div>
+		</a>
+	</div>
+	<div ng-show='leftNavOnce.WITHDRAW_SYS'>
+		<a href="#/putForward" ng-class="(leftNav=='putForward'||leftNav=='putDetail')?'ac':''" ng-click="handclk('putForward')" style="display: inline-block;width: 100%;height: 100%;">
+			<img src="img/g2.png" alt="">
+			<p class="pTit">提现管理</p>
+			<div>
+				<p>优点:</p>
+				<p>采用分--总的模式进行现金管理。</p>
+			</div>
+		</a>
+	</div>
+	<div style="border-right: none;" ng-show='leftNavOnce.EMPLOYEE_SYS'>
+		<a href="#/shgl" ng-class="leftNav=='shgl'?'ac':''" ng-click="handclk('shgl')" style="display: inline-block;width: 100%;height: 100%;">
+			<img src="img/g3.png" alt="" style="width: 1.3rem">
+			<p class="pTit">员工管理</p>
+			<div>
+				<p>优点:</p>
+				<p>员工建档与权限自由分配，管理更加扁平化、人性化。</p>
+			</div>
+		</a>
+	</div>
+	<div style="border-bottom: none;" ng-show='leftNavOnce.STORE_STATISTIC'>
+		<a href="#/store" ng-class="leftNav=='store'?'ac':''" ng-click="handclk('store')" style="display: inline-block;width: 100%;height: 100%;">
+			<img src="img/g4.png" alt="" style="width: 1.3rem">
+			<p class="pTit">门店统计</p>
+			<div>
+				<p>优点:</p>
+				<p>总览门店数据，合理分配资源。</p>
+			</div>
+		</a>
+	</div>
+	<div style="border-bottom: none;"  ng-show='leftNavOnce.INFORMATION_FEEDBACK'>
+		<a href="#/mes" ng-class="leftNav=='mes'?'ac':''" ng-click="handclk('mes')" style="display: inline-block;width: 100%;height: 100%;">
+			<img src="img/g5.png" alt="">
+			<p class="pTit">信息反馈</p>
+			<div>
+				<p>优点:</p>
+				<p>发现问题，提出问题，并解决问题</p>
+			</div>
+		</a>
+	</div>
+</div>

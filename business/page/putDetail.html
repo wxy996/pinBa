@@ -1,0 +1,70 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;padding-top: 0.3rem;">
+				<div class="leftTit" >
+					<a class='aHref hand'  href="#/ad" ng-click="handclk('ad')">广告管理></a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">查看详情</span>
+				</div>
+				<div class="putSelectWrap clearfix" style="padding-left: 0.5rem">
+					<span>提现状态：</span>
+					<select name="" id="">
+						<option value="">提现成功</option>
+						<option value="">提现申请中</option>
+						<option value="">提现确认</option>
+						<option value="">提现驳回</option>
+					</select>
+					<button>搜索</button>
+				</div>
+				<div>
+					<table class="staffTable">
+						<thead>
+							<th style="width:12.5%">单号</th>
+							<th style="width:12.5%">账户余额(￥)</th>
+							<th style="width:12.5%">提现余额(￥)</th>
+							<th style="width:12.5%">提现申请时间</th>
+							<th style="width:12.5%">体现人</th>
+							<th style="width:12.5%">提现状态</th>
+							<th style="width:12.5%">提现方式</th>
+							<th style="width:12.5%">操作</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>001</td>
+								<td>160000</td>
+								<td>160000</td>
+								<td>2018-09-09</td>
+								<td>阿萨德</td>
+								<td>提现成功</td>
+								<td>银行账户</td>
+								<td style="padding-left: 0rem;">
+									<img src="img/btn_edit_nor@2x.png" class="hand" alt="" style="width: 0.24rem;"  ng-click='peopleBtn("edit")'>
+									<img src="img/btn_delete_nor@2x.png" class="hand" alt="" style="width: 0.18rem;"  ng-click='delBtn()'>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 删除 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除提示</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除此广告?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn">确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

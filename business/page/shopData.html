@@ -1,0 +1,51 @@
+<!-- 发放优惠券 -->
+<!-- 店铺装修 -->
+<div class="conWrap ng-scope" style="padding: .44rem 0.2rem 0.54rem 0.2rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<div class="leftTit" style="padding-left: 0.54rem;" ng-show='userInfoType=="super"'>
+					<a class="aHref hand"  href="#/shgl" ng-click="handclk('shgl')">店铺管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">{{shopName}}</span>
+				</div>
+				<div class="leftTit" style="padding-left: 0.54rem;" ng-show='userInfoType=="shop_manager"'>
+					<a class="aHref hand"  href="#/shglManger" ng-click="handclk('shglManger')">店铺管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">{{shopName}}</span>
+				</div>
+				<div style="padding-left: 1rem;padding-top: 0.4rem;">
+					<div class="zcWrap clearfix" style="margin-top: 0.3rem;">
+						<span ng-click='getTimefn()' class="hand"  style="display: inline-block;height: 0.4rem;margin-top: 0.05rem;float: left; width: 1rem;border:0.01rem solid #1170B2;color: #1170B2;line-height: 0.42rem; border-radius: 0.05rem;padding:0;text-align: center;float: right;">查询</span>
+						<select name="" id="dayType" style="display: inline-block;height: 0.4rem;margin-top: 0.05rem;float: left; width: 1.74rem;border:0.01rem solid #ddd;border-radius: 0.05rem;padding-left: 0.1rem;margin-right: 0.1rem;font-size: 0.16rem;background: #fff;float: right;">
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						<span style="float: right;">月数选择：</span>
+						<input monthdate modeltext='textTime' class="hand" type="text" ng-model="textTime" placeholder="选择时间"  style="display: inline-block;height: 0.4rem;margin-top: 0.05rem;float: left; width: 1.74rem;border:0.01rem solid #ddd;border-radius: 0.05rem;padding-left: 0.1rem;margin-right: 0.1rem;font-size: 0.16rem;float: right;"/>
+						<span style="float: right;">时间选择：</span>
+				
+						
+
+					</div>
+				</div>
+				<div  id="iWrap" style="box-sizing: border-box;height: 18rem">	 
+				</div>
+				<div class="zcWrap clearfix" style="margin-top: 0.3rem;">
+					<span ng-click='getTimefn2()' class="hand"  style="display: inline-block;height: 0.4rem;margin-top: 0.05rem;float: left; width: 1rem;border:0.01rem solid #1170B2;color: #1170B2;line-height: 0.42rem; border-radius: 0.05rem;padding:0;text-align: center;float: right;">查询</span>
+					<input monthdate modeltext='textTime' class="hand" type="text" ng-model="monTime" placeholder="选择时间"  style="display: inline-block;height: 0.4rem;margin-top: 0.05rem;float: left; width: 1.74rem;border:0.01rem solid #ddd;border-radius: 0.05rem;padding-left: 0.1rem;margin-right: 0.1rem;font-size: 0.16rem;float: right;"/>
+					<span style="float: right;">时间选择：</span>
+				</div>
+				<div  id="iWrap2" style="box-sizing: border-box;height:5rem;margin-top: 1rem">	 
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

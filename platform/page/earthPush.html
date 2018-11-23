@@ -1,0 +1,104 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="earthViewWrap conWrap" style="padding-top: 1.09rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<div class="searchWrap">
+					<input type="text" id="search" placeholder="输入地推人员姓名，按回车搜索">
+					<img src="img/btn_search_nor@2x.png" alt="">
+				</div>
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 25%">姓名</th>
+							<th style="width: 25%">员工账号</th>
+							<th style="width: 25%">商户数量</th>
+							<th style="width: 25%">操作</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in dtList'>
+								<td>{{p.realname}}</td>
+								<td>{{p.username}}</td>
+								<td>{{p.total_push_shop}}</td>
+								<td>
+									<span class="hand" ng-click='goDetail(p.realname,p.username,p.id)' style="color:rgba(17,112,178,1);">查看详情>></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 详情 -->
+<div class="modal" ng-show='detailmodalShow'>
+	<div style="height: 6.58rem;width: 10rem">
+		<div class="title" style="">
+			<span>详情</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeDetailModal()'>
+		</div>
+		<div class="con" style="padding-top: 0.1rem">
+			<div class="dituiWrap">
+				<span class="spanL">地推人员：</span><span class="spanR">{{n1}}</span>
+				<span class="spanL">员工账号：</span><span class="spanR">{{n2}}</span>
+			</div>
+			<div class="dituiWrap">
+				<span class="spanL">查看时间：</span>
+				<!-- <span id="time1" style="width: 0.6rem;height: 0.22rem;background: #f3f3f3;border: 1px solid #ddd;">开始时间</span> -->
+
+        		<input def-laydate range="~" class="hand" type="text" ng-model="dateText" style="background-image: -webkit-linear-gradient(top, #fff, #c1c1c1);border: 1px solid #737373;border-radius: 0.05rem;height: 0.31rem;width: 3.2rem;float: left;margin-top: 0.22rem "  />
+        		<span ng-click='changeTime()' class="hand" style="display: inline-block; width: 0.76rem;height: 0.31rem;text-align: center;line-height: 0.31rem;border: 1px solid #737373;border-radius: 0.05rem;background: #c7c7c7;font-size: 0.22rem;background-image: -webkit-linear-gradient(top, #fff, #c1c1c1);float: left;margin-top: 0.22rem;margin-left: 0.3rem ">查询</span>
+			</div>
+			<div class="dituiWrap" ng-show='click=="show"'>
+				<span class="spanL">流水和：</span><span style="font-size: 0.34rem;line-height: 0.8rem;color: #374358">{{detailCon.total_amount}}</span>
+			</div>
+			<div style="margin-bottom: 0.2rem" ng-show='click=="show"'>
+				<span style="font-size:0.2rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(102,102,102,1);">>各个商家流水明细表</span>
+			</div>
+			<table class="staffTable staffTable2" ng-show='click=="show"'>
+					<thead>
+						<!-- <th style="width: 20%">商户名称</th> -->
+						<th style="width: 20%">店铺名称</th>
+						<th style="width: 20%">店铺ID</th>
+						<th style="width: 15%">店铺归属地</th>
+						<th style="width: 30%">注册时间</th>
+						<th style="width: 15%">流水</th>
+					</thead>
+					<tbody>
+						<tr style="line-height: 0.65rem;" ng-repeat='p in shop'>
+							<!-- <td> -->
+								<!-- <span>{{shop.}}</span> -->
+							<!-- </td> -->
+							<td>{{p.shop_name}}</td>
+							<td>{{p.shop_tel}}</td>
+							<td>{{p.city_name}}</td>
+							<td>{{p.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+							<td style="padding-left: 0">
+								{{p.total_amount}}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
+</div>

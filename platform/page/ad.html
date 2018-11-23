@@ -1,0 +1,162 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;padding-top: 0.3rem;">
+				<div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					<a href="#/regionAd" style="width: 1.21rem;height: 0.4rem;line-height: 0.4rem;border-radius: 0; font-size: 0.18rem;" class="btn-blueBig" type="submit" ng-click='peopleBtn("add")'>区域控制</a>
+				</div>
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 70%;text-align: left;padding-left: 20px;">广告位置</th>
+							<!-- <th style="width: 50%">缩略图</th> -->
+							<th style="width: 30%">操作</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;" ng-repeat='p in bannerList'>
+								<td style="text-align: left;padding-left: 20px;">
+									{{p.name}}
+								</td>
+								<!-- <td>
+									<img src="img/bg_nor@2x.png" alt="" style="width: 1.14rem;margin-left: 2.75rem">
+								</td> -->
+								
+								<td style="padding: 0">
+									<a ng-href="#/adDetail?id={{p.id}}&pagePos={{p.name}}" class="hand tableBlueBtn" ng-click="handclk('ad')">查看</a>
+								</td>
+							</tr>
+				
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 新建编辑人员 -->
+<div class="modal" ng-show='modalShow'>
+	<div style="height: 5.8rem;">
+		<div class="title" style="">
+			<span>{{peopleType=='add'?'添加店员':'修改店员信息'}} </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtn()'>
+		</div>
+		<ul class="con">
+			<li class="clearfix">
+				<div class="l">
+					员工账号
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123">
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					员工姓名
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123">
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					默认密码
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123">
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					新密码
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123" style="width: 2.43rem;">
+				
+						<a href="javascript:;" class="modalBtn" ng-click='showBtn()'>密码重置</a>
+		
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					权限
+				</div>
+				<div class="r cheboxWrap">
+					<label for="c1">
+						<input id="c1" type="checkbox" placeholder="123123">
+						概览
+					</label>
+					<label for="c2">
+						<input id="c2" type="checkbox" placeholder="123123">
+						地推管理
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						广告审核
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						账号管理
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						商户审核
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						交易信息
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						体现审核
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						用户反馈
+					</label>
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn">{{peopleType=='add'?'提交':'确定修改'}}</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 删除 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除员工信息</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除此用户?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn">确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

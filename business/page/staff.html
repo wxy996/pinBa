@@ -1,0 +1,173 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="staffViewWrap conWrap">
+	<div class="row">
+		<div style="padding: 0 0.8rem;">
+			<div style="padding-top:.61rem;padding-bottom: .41rem;">
+				<div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					<a href="javascript:;" class="btn-blueBig" type="submit"  ng-click='peopleBtn("add")'>+ 添加店员</a>
+				</div>
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th>工号</th>
+							<th>账号</th>
+							<th>姓名</th>
+							<th>概览</th>
+							<th>店铺管理</th>
+							<th>提现管理</th>
+							<th>员工管理</th>
+							<th>门店管理</th>
+							<th>信息反馈</th>
+							<th>操作</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in shopList'>
+								<td>{{p.id}}</td>
+								<td>
+									{{p.username}}
+								</td>
+								<td>
+									{{p.realname}}
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.OVERVIEW_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.SHOP_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.WITHDRAW_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.EMPLOYEE_SYS'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.STORE_STATISTIC'>
+								</td>
+								<td>
+									<input type="checkbox" disabled ng-checked='p.power_info.INFORMATION_FEEDBACK'>
+								</td>
+								<td style="padding-left: 0rem;">
+									<img src="img/btn_edit_nor@2x.png" alt="" style="width: 0.24rem;"  ng-click='peopleBtn("edit",p)'>
+									<img src="img/btn_delete_nor@2x.png" alt="" style="width: 0.18rem;"  ng-click='delBtn(p.id)'>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 新建编辑人员 -->
+<div class="modal" ng-show='modalShow'>
+	<div style="height: 6rem;">
+		<div class="title" style="">
+			<span>{{peopleType=='add'?'添加店员':'修改店员信息'}} </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtn()'>
+		</div>
+		<ul class="con">
+			<li class="clearfix">
+				<div class="l">
+					员工账号
+				</div>
+				<div class="r">
+					<input type="text" placeholder="员工账号" ng-model='addUserZh'>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					员工姓名
+				</div>
+				<div class="r">
+					<input type="text" placeholder="员工姓名" ng-model='addUserName'>
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					手机号
+				</div>
+				<div class="r">
+					<input type="text" placeholder="手机号" ng-model='addUserTel' maxlength="11">
+				</div>
+			</li>		
+			<!-- <li class="clearfix">
+				<div class="l">
+					密码
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123" ng-model='addUserPas'>
+				</div>
+			</li>	 -->
+	<!-- 		<li class="clearfix">
+				<div class="l">
+					新密码
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123" style="width: 2.43rem;">
+				
+						<a href="javascript:;" class="modalBtn" ng-click='showBtn()'>密码重置</a>
+		
+				</div>
+			</li>	 -->
+			<li class="clearfix" style="margin-bottom: 0">
+				<div class="l">
+					权限
+				</div>
+				<div class="cheboxWrap cheboxWrap2 r">
+					<label for="c1" class="clearfix">
+						<input id="c1" class="qxzName" name='qxzName' type="checkbox" value='1'  ng-checked='editUserGroup.OVERVIEW_SYS'>
+						概览
+					</label>
+					<label for="c2" class="clearfix">
+						<input id="c2" class="qxzName" name='qxzName' type="checkbox" value='2' ng-checked='editUserGroup.SHOP_SYS'>
+						店铺管理
+					</label>
+					<label for="c3" class="clearfix">
+						<input id="c3" class="qxzName" name='qxzName' type="checkbox" value='4' ng-checked='editUserGroup.WITHDRAW_SYS'>
+						提现管理
+					</label>
+					<label for="c4" class="clearfix">
+						<input id="c4" class="qxzName" name='qxzName' type="checkbox" value='8' ng-checked='editUserGroup.EMPLOYEE_SYS'>
+						员工管理
+					</label>
+					<label for="c5" class="clearfix">
+						<input id="c5" class="qxzName" name='qxzName' type="checkbox" value='16' ng-checked='editUserGroup.STORE_STATISTIC'>
+						门店管理
+					</label>
+					<label for="c6" class="clearfix">
+						<input id="c6" class="qxzName" name='qxzName' type="checkbox" value='32' ng-checked='editUserGroup.INFORMATION_FEEDBACK'>
+						信息反馈
+					</label>
+					<label for="c7" class="clearfix" style="border-top: 1px solid #ddd;padding-top: 0.1rem;">
+						<input id="c7" class="qxzName" name='king' type="checkbox">
+						店长
+					</label>
+				</div>
+			</li>	
+			<p style="height: 0.3rem;font-size: 0.14rem;color: red;text-align: center;">备注：选择店长就无法使用别的权限</p>
+
+			<li style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='userAddBtn()'>{{peopleType=='add'?'提交':'确定修改'}}</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 删除 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除员工</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除此用户?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='delYg()'>确定</span>
+			</div>
+	</div>
+</div>

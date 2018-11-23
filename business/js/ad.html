@@ -1,0 +1,180 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;padding-top: 0.5rem;">
+				
+				<div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					<a href="javascript:;" style="width: 0.94rem;height: 0.32rem;line-height: 0.32rem;font-size: 0.18rem;" class="btn-blueBig" type="submit" ng-click='peopleBtn("add")'>修改</a>
+				</div>
+				<div>
+					<table class="staffTable staffTable2" ng-show='navType=="nav1"||navType=="nav2"'>
+						<thead>
+							<th style="width: 58%;text-align: left;text-indent: 0.3rem">反馈问题</th>
+							<th style="width: 13%">日期</th>
+							<th style="width: 13%">用户</th>
+							<th style="width: 13%">操作</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;">
+								<td style="text-align: left;text-indent: 0.3rem">
+									啊十分大打发打发阿法士大夫啊大法师地方阿法大法师大法师的发三的发
+								</td>
+								<td>1364646464</td>
+								<td>阿斯顿</td>
+								<td style="padding: 0">
+									<span class="hand" ng-click='goDetail()' style="color:#333;border: 1px solid #333;border-radius: 0.05rem;display: inline-block;width:0.64rem;text-align: center; height: 0.32rem;line-height: 0.32rem;">回复</span>
+								</td>
+							</tr>
+							<tr style="line-height: 0.65rem;">
+								<td style="text-align: left;text-indent: 0.3rem">
+									啊十分大打发打发阿法士大夫啊大法师地方阿法大法师大法师的发三的发
+								</td>
+								<td>1364646464</td>
+								<td>阿斯顿</td>
+								<td style="padding: 0">
+									<span class="hand" ng-click='goDetail()' style="color:#333;border: 1px solid #333;border-radius: 0.05rem;display: inline-block;width:0.64rem;text-align: center; height: 0.32rem;line-height: 0.32rem;">回复</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="staffTable staffTable2" ng-show='navType=="nav3"'>
+						<thead>
+							<th style="width:20%;">操作时间</th>
+							<th style="width:60%">操作人</th>
+							<th style="width:20 13%">操作行为</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;">
+								<td>
+									2018-09-09
+								</td>
+								<td>阿斯顿</td>
+								<td style="padding: 0">
+									正常操作
+								</td>
+							</tr>
+							<tr style="line-height: 0.65rem;">
+								<td>
+									2018-09-09
+								</td>
+								<td>阿斯顿</td>
+								<td style="padding: 0">
+									违规操作
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 新建编辑人员 -->
+<div class="modal" ng-show='modalShow'>
+	<div style="height: 5.8rem;">
+		<div class="title" style="">
+			<span>{{peopleType=='add'?'添加店员':'修改店员信息'}} </span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtn()'>
+		</div>
+		<ul class="con">
+			<li class="clearfix">
+				<div class="l">
+					员工账号
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123">
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					员工姓名
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123">
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					默认密码
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123">
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					新密码
+				</div>
+				<div class="r">
+					<input type="text" placeholder="123123" style="width: 2.43rem;">
+				
+						<a href="javascript:;" class="modalBtn" ng-click='showBtn()'>密码重置</a>
+		
+				</div>
+			</li>	
+			<li class="clearfix">
+				<div class="l">
+					权限
+				</div>
+				<div class="r cheboxWrap">
+					<label for="c1">
+						<input id="c1" type="checkbox" placeholder="123123">
+						概览
+					</label>
+					<label for="c2">
+						<input id="c2" type="checkbox" placeholder="123123">
+						地推管理
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						广告审核
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						账号管理
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						商户审核
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						交易信息
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						体现审核
+					</label>
+					<label for="">
+						<input type="checkbox" placeholder="123123">
+						用户反馈
+					</label>
+				</div>
+			</li>	
+			<li style="text-align: center;">
+				<span class="modalSendBtn">{{peopleType=='add'?'提交':'确定修改'}}</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 删除 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除员工信息</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除此用户?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn">确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

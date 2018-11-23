@@ -1,0 +1,295 @@
+<!-- shopDataIframe.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
+	<link rel="stylesheet" type="text/css" href="../css/nav.css">
+	<link rel="icon" type="image/png" sizes="96x96" href="../img/logo.png">
+	<title>拼吧-商户后台</title>
+	<style>
+		.forTopWrap{
+			background: #fff;
+			border-top: 3px dashed #888;
+		}
+		.forTopWrap p{
+			font-size: 0.3rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div>
+			<div style="padding-top:.23rem;padding-bottom: .41rem;">
+				<ul class="forTopWrap" style="margin-bottom: 0.58rem">
+					<li>
+						<p class="num1"></p>
+						<p>总拼人数(人)</p>
+					</li>
+					<li>
+						<p class="num2">1234}</p>
+						<p>真实消费人数(人)</p>
+					</li>
+				</ul>
+			</div>
+			<div id="main" style="width: 80%;height:400px;background: #f3f3f3;margin-bottom: 1rem;margin-left: 10%;"></div>
+			<div id="main222" style="width: 80%;height:400px;background: #f3f3f3;margin-bottom: 1rem;margin-left: 10%"></div>
+			<div id="char3" style="width: 80%;height:400px;background: #f3f3f3;margin-bottom: 1rem;margin-left: 10%"></div>
+
+
+		</div>
+	</div>
+
+	<script src="../js/jquery-1.12.3.min.js"></script>
+	
+
+	<script src="../js/reset.js?v=4"></script>
+	<script src="../js/city.js?v=1"></script>
+	<script src="../js/laydate.js"></script> 
+	<!-- <script src="../js/echarts.min.js"></script>  -->
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+
+
+	<script>
+
+		var ordercode=getUrlParems(window.location.href);
+		var oHtml=$("html");
+
+		var viewH=ordercode.viewH
+		console.log(ordercode)
+		if(viewH>1200){
+			var fontSize = viewH / 1920 * 100; 
+			oHtml.css("font-size",+fontSize+"px")
+		}else{
+			var fontSize = 1200 / 1920 * 100; 
+			oHtml.css("font-size",+fontSize+"px")
+		}
+/////////////第一个
+// page/shopDataIframe.html?viewH=1656&id=28&time=2018-08&dayType=3
+		$.ajax({
+			type: "get",
+			url : oUrl+'busi/data/statistic/three',
+			async : false,
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization':'Bearer '+window.localStorage.getItem("shopToken")
+			},
+			data:{
+				shop_id:ordercode.id,
+				begin_date:ordercode.time1+'-'+ordercode.time2,
+				month:ordercode.dayType
+			},
+			success : function(res){
+				console.log(res)
+				if( res.status_code==200){
+					$(".num1").html(res.data.total_buy_num)
+					$(".num2").html(res.data.total_check_num)
+///////////////////////////////////////////////////////////////////////////////
+					var char1=res.data.fx_num
+					var yList=[],xf=[],fq=[]
+					for(var i=0;i<char1.length;i++){
+						yList.push(char1[i].date)
+						fq.push(char1[i].total_buy_num)
+						xf.push(char1[i].total_check_num)
+					}
+					console.log(yList)
+
+					var myChart = echarts.init(document.getElementById('main'));
+					var option = {
+					    title: {
+					        text: '总拼-消费人数对比图',
+					        // subtext: '总拼-消费人数对比图'
+					    },
+					    tooltip: {
+					        trigger: 'axis',
+					        axisPointer: {
+					            type: 'shadow'
+					        }
+					    },
+					    legend: {
+					        data: ['发券', '消费券']
+					    },
+					    grid: {
+					        left: '3%',
+					        right: '4%',
+					        bottom: '3%',
+					        containLabel: true
+					    },
+					    xAxis: {
+					        type: 'value',
+					        boundaryGap: [0, 0.01]
+					    },
+					    yAxis: {
+					        type: 'category',
+					        data: yList
+					    },
+					    series: [
+					        {
+					            name: '发券',
+					            type: 'bar',
+					            data: fq
+					        },
+					        {
+					            name: '消费券',
+					            type: 'bar',
+					            data: xf
+					        }
+					    ]
+					};
+			        myChart.setOption(option);
+///////////////////////////////////////////////////////////////////////////////
+
+					var char2=res.data.fx_rate
+					var xList=[],rate=[]
+					for(var i=0;i<char2.length;i++){
+						xList.push(char2[i].date)
+						rate.push(char2[i].rate)
+					}
+
+			        var main222 = echarts.init(document.getElementById('main222'));
+
+					var option2 = {
+						title: {
+							text: '发消比（消费人数/总拼人数)',
+						},
+					    xAxis: {
+					        type: 'category',
+					        data: xList
+					    },
+					    yAxis: {
+					        type: 'value'
+					    },
+					    series: [{
+					        data: rate,
+					        type: 'line',
+					        smooth: true
+					    }]
+					};
+
+			        main222.setOption(option2);
+///////////////////////////////////////////////////////////
+
+			        var myChart = echarts.init(document.getElementById('char3'));
+			        var app = {};
+					option = null;
+
+			        var charCon=res.data.type.statistic
+
+					var xList3=['product'],rate=[]
+					for(var i=0;i<charCon.length;i++){
+						xList3.push(charCon[i].date)
+					}
+
+					var source=[]
+					source.push(xList3)
+
+					for(var i=0;i< res.data.type.format_data.length;i++){
+						source.push(res.data.type.format_data[i])
+					}
+
+					// var source=[
+					// ["product", "2017-11", "2017-12", "2018-01", "2018-02", "2018-03", "2018-04", "2018-05", "2018-06", "2018-07", "2018-08", "2018-09", "2018-10"],
+					// ["90.00%折扣率", 10, 60, 20, 40, 20, 10, 10, 10, 10, 10, 14, 2],
+					// ["50.00%折扣率", 20, 50, 30, 40, 30, 50, 30, 10, 10, 20, 3, 20],
+					// ["80.00%折扣率", 30, 40, 30, 40, 30, 10, 30, 30, 30, 30, 30, 30]]
+
+
+					setTimeout(function () {
+
+					    option = {
+					    	title: {
+								text: '券类型总数',
+							},
+					        legend: {},
+					        tooltip: {
+					            trigger: 'axis',
+					            showContent: false
+					        },
+					        dataset: {
+					            source:source
+					        },
+					        xAxis: {type: 'category'},
+					        yAxis: {gridIndex: 0},
+					        grid: {top: '55%'},
+					        series: [
+					            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+					            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+					            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+					            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+					            {
+					                type: 'pie',
+					                id: 'pie',
+					                radius: '30%',
+					                center: ['50%', '25%'],
+					                label: {
+					                    formatter: '{b}: {@2012} ({d}%)'
+					                },
+					                encode: {
+					                    itemName: 'product',
+					                    value: '2012',
+					                    tooltip: '2012'
+					                }
+					            }
+					        ]
+					    };
+
+					    myChart.on('updateAxisPointer', function (event) {
+					        var xAxisInfo = event.axesInfo[0];
+					        if (xAxisInfo) {
+					            var dimension = xAxisInfo.value + 1;
+					            console.log(dimension)
+					            myChart.setOption({
+					                series: {
+					                    id: 'pie',
+					                    label: {
+					                        formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+					                    },
+					                    encode: {
+					                        value: dimension,
+					                        tooltip: dimension
+					                    }
+					                }
+					            });
+					        }
+					    });
+
+					    myChart.setOption(option);
+
+					});;
+					if (option && typeof option === "object") {
+					    myChart.setOption(option, true);
+					}
+
+
+
+				}
+			
+			},error:function(res){
+				if(res.responseJSON.status_code==422){
+					alert(res.responseJSON.errors[0].error)
+				}else{
+					alert(res.responseJSON.errors)
+				};
+			}
+		})
+		
+//////////////第二个
+		
+
+        function getUrlParems(url) {
+		    var index = url.indexOf("?");
+		    var str = url.substr(index + 1);
+		    var aParams = str.split("&");
+		    var obj = {};
+		    for (var i = 0; i < aParams.length; i++) {
+		        var inParams = aParams[i].split("=");
+		        obj[inParams[0]] = inParams[1];
+		    }
+		    return obj;
+		}
+
+		
+	</script>
+</body>
+</html>

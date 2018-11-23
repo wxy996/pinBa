@@ -1,0 +1,78 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;padding-top: 0.3rem;">
+				<div class="leftTit" >
+					<a class='aHref hand'  href="#/ad" ng-click="handclk('ad')">广告管理></a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">区域控制</span>
+				</div>
+				<!-- <div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					
+				</div> -->
+				<div class="searchWrap signBtn" style="margin-top: 0.1rem;text-align: right">
+					<!-- <input type="text" placeholder="请输入省，市名进行查询"> -->
+					<select name="" id="sheng">
+						
+					</select>
+					<!-- <img src="img/btn_search_nor@2x.png" alt="" style="left: 12.8rem"> -->
+				</div>
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 18%">省名称</th>
+							<th style="width: 18%">城市名称</th>
+							<th style="width: 18%">城市代码</th>
+							<th style="width: 18%">操作</th>
+						</thead>
+						<tbody>
+							<tr style="line-height: 0.65rem;" ng-repeat='p in showList'>
+								<td>{{p.shortname}}</td>
+								<td>{{p.areaname}}</td>
+								<td>{{p.parentid}}</td>
+								<td>
+									<span class="hand" ng-show='{{p.limit!=1}}'  ng-click='openModal(p.id)' style="color:#fff;border-radius: 0.05rem; display: inline-block;width:0.92rem;text-align: center;background: #0081DB; height: 0.29rem;line-height: 0.32rem;">开通</span>
+									<span class="hand" ng-show='{{p.limit==1}}' ng-click='openDelBtn(p.id)' style="color:#fff;border-radius: 0.05rem; display: inline-block;width:0.92rem;text-align: center;background: #314451; height: 0.29rem;line-height: 0.32rem;">关闭</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 关闭 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>关闭提示</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			确定要将此城市关闭吗?
+		</div>
+		<div style="text-align: center;">
+			<span class="modalSendBtn hand" ng-click='delSure()'>确定</span>
+		</div>
+	</div>
+</div>
+<!-- 解封 -->
+<div class="modal" ng-show='openmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>开通提示</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeopenAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			确定要将此城市开通?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='sureOpen()'>确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

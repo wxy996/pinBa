@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shop">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
+	<link rel="stylesheet" type="text/css" href="../css/nav.css">
+	<link rel="icon" type="image/png" sizes="96x96" href="../img/logo.png">
+	<title>拼吧-商户后台</title>
+	<style>
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div>
+			  <div id="main" style="width: 100%;height:500px;"></div>
+		</div>
+	</div>
+
+	<script src="../js/jquery-1.12.3.min.js"></script>
+	
+
+	<script src="../js/reset.js?v=4"></script>
+	<script src="../js/city.js?v=1"></script>
+	<script src="../js/laydate.js"></script> 
+	<script src="../js/echarts.min.js"></script> 
+
+	<script>
+
+		console.log(window.location.href)
+		var ordercode=getUrlParems(window.location.href);
+
+		console.log(ordercode)
+
+		var begin_date
+		
+		var myChart = echarts.init(document.getElementById('main'));
+		if(ordercode.dayType=="month"){
+			begin_date=ordercode.time1+"-"+ordercode.time2
+		}else{
+			begin_date=ordercode.time1+"-"+ordercode.time2+"-"+ordercode.time3
+		}
+
+		$.ajax({
+			type: "get",
+			url : oUrl+'busi/asset/statistic',
+			async : false,
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization':'Bearer '+window.localStorage.getItem("shopToken")
+			},
+			data:{
+				shop_id:ordercode.id,
+				begin_date:begin_date,
+				date_type:ordercode.dayType
+			},
+			success : function(res){
+				console.log(res)
+				if( res.status_code==200){
+					var x=[],y=[]
+					for(var i=0;i<res.data.statistic.length;i++){
+						x.push(res.data.statistic[i].date)
+						y.push(res.data.statistic[i].total_buy_money)
+					}
+					var option = {
+			            title: {
+			                // text: 'ECharts 入门示例'
+			            },
+			            tooltip: {},
+			            legend: {
+			                data:['销量']
+			            },
+			            xAxis: {
+					        type: 'category',
+					        data:x
+					    },
+					    yAxis: {
+					        type: 'value'
+					    },
+					    series: [{
+					        data:y,
+					        type: 'line',
+					        smooth: true
+					    }]
+			        };
+
+			        // 使用刚指定的配置项和数据显示图表。
+			        myChart.setOption(option);
+				}
+			
+			},error:function(res){
+				if(res.responseJSON.status_code==422){
+					alert(res.responseJSON.errors[0].error)
+				}else{
+					alert(res.responseJSON.errors)
+				};
+			}
+		})
+
+		
+
+        function getUrlParems(url) {
+		    var index = url.indexOf("?");
+		    var str = url.substr(index + 1);
+		    var aParams = str.split("&");
+		    var obj = {};
+		    for (var i = 0; i < aParams.length; i++) {
+		        var inParams = aParams[i].split("=");
+		        obj[inParams[0]] = inParams[1];
+		    }
+		    return obj;
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="jiaoyiViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;padding-top: 0.3rem;">
+				<div class="leftTit" >
+					<a class='aHref hand'  href="#/ad" ng-click="handclk('ad')">广告管理></a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">查看详情</span>
+				</div>
+				<!-- <div class="signBtn text-right" style="margin-bottom: 0.51rem;">
+					
+				</div> -->
+				<div class="searchWrap signBtn" style="margin-top: 0.52rem;">
+					<input type="text" placeholder="请输入城市名进行查询">
+					<img src="img/btn_search_nor@2x.png" alt="">
+
+					<a href="#/addAd" style="width: 1.21rem;height: 0.4rem;line-height: 0.4rem;border-radius: 0; font-size: 0.18rem;float: right" class="btn-blueBig" type="submit" ng-click='peopleBtn("add")'>添加广告位</a>
+				</div>
+				<div>
+					<table class="staffTable">
+						<thead>
+							<th style="width:15%">广告位置</th>
+							<th style="width:10%">缩略图</th>
+							<th style="width:10%">标题</th>
+							<th style="width:10%">城市名称</th>
+							<th style="width:10%">城市代码</th>
+							<th style="width:10%">商户ID</th>
+							<th style="width:10%">广告位ID</th>
+							<th style="width:10%">排序</th>
+							<th style="width:15%">操作</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>首页banner</td>
+								<td>
+									<img src="img/bg_nor@2x.png" alt="" style="width: 1.14rem;margin-left: 0.1rem">
+								</td>
+								<td>美食</td>
+								<td>北京</td>
+								<td>001</td>
+								<td>001</td>
+								<td>001</td>
+								<td>001</td>
+								<td style="padding-left: 0.1rem;">
+									<img src="img/btn_edit_nor@2x.png" class="hand" alt="" style="width: 0.24rem;"  ng-click='peopleBtn("edit")'>
+									<img src="img/btn_delete_nor@2x.png" class="hand" alt="" style="width: 0.18rem;"  ng-click='delBtn()'>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 删除 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除提示</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除此广告?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn">确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

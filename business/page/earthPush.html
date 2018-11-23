@@ -1,0 +1,107 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="earthViewWrap conWrap" style="padding-top: 1.09rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<div class="searchWrap">
+					<input type="text">
+					<img src="img/btn_search_nor@2x.png" alt="">
+				</div>
+				<div>
+					<table class="staffTable staffTable2">
+						<thead>
+							<th style="width: 25%">地推人员姓名</th>
+							<th style="width: 25%">员工账号</th>
+							<th style="width: 25%">商户数量</th>
+							<th style="width: 25%">操作</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>张三</td>
+								<td>1364646464</td>
+								<td>21</td>
+								<td>
+									<span class="hand" ng-click='goDetail()' style="color:rgba(17,112,178,1);">查看详情>></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 详情 -->
+<div class="modal" ng-show='detailmodalShow'>
+	<div style="height: 6.58rem;width: 10rem">
+		<div class="title" style="">
+			<span>查封/解封</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeDetailModal()'>
+		</div>
+		<div class="con" style="padding-top: 0.1rem">
+			<div class="dituiWrap">
+				<span class="spanL">地推人员：</span><span class="spanR">张三</span>
+				<span class="spanL">员工账号：</span><span class="spanR">1364545544</span>
+			</div>
+			<div class="dituiWrap">
+				<span class="spanL">查看时间：</span>
+				<!-- <span id="time1" style="width: 0.6rem;height: 0.22rem;background: #f3f3f3;border: 1px solid #ddd;">开始时间</span> -->
+
+        		<input def-laydate range="~" class="hand" type="text" ng-model="dateText" style="background-image: -webkit-linear-gradient(top, #fff, #c1c1c1);border: 1px solid #737373;border-radius: 0.05rem;height: 0.31rem;width: 3.2rem;float: left;margin-top: 0.22rem "  />
+        		<span ng-click='changeTime()' class="hand" style="display: inline-block; width: 0.76rem;height: 0.31rem;text-align: center;line-height: 0.31rem;border: 1px solid #737373;border-radius: 0.05rem;background: #c7c7c7;font-size: 0.22rem;background-image: -webkit-linear-gradient(top, #fff, #c1c1c1);float: left;margin-top: 0.22rem;margin-left: 0.3rem ">查询</span>
+			</div>
+			<div class="dituiWrap">
+				<span class="spanL">流水和：</span><span style="font-size: 0.34rem;line-height: 0.8rem;color: #374358">28970</span>
+			</div>
+			<div style="margin-bottom: 0.2rem">
+				<span style="font-size:0.2rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(102,102,102,1);">>各个商家流水明细表</span>
+				<!-- <span style="float: right;width: 0.9rem;height: 0.28rem;font-size: 0.2rem;color: #fff;border: 1px solid #1170B2;border-radius: 0.05rem;background: #1170B2;text-align: center;">解封</span>
+				<span style="float: right;width: 0.9rem;height: 0.28rem;font-size: 0.2rem;color: #1170B2;border: 1px solid #1170B2;border-radius: 0.05rem;text-align: center;margin-right: 0.2rem">查封</span> -->
+			</div>
+			<table class="staffTable staffTable2">
+					<thead>
+						<th style="width: 20%">商家名称</th>
+						<th style="width: 20%">店铺名称</th>
+						<th style="width: 20%">店铺ID</th>
+						<th style="width: 15%">店铺归属地</th>
+						<th style="width: 15%">注册时间</th>
+						<th style="width: 10%">流水</th>
+					</thead>
+					<tbody>
+						<tr style="line-height: 0.65rem;">
+							<td>
+								<!-- <input type="checkbox"> -->
+								<span>北京烤鸭</span>
+							</td>
+							<td>烤鸭</td>
+							<td>1364646464</td>
+							<td>天津</td>
+							<td>2018.9.9</td>
+							<td style="padding-left: 0">
+								12000
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			<div style="padding: 0.7rem 0.5rem 0.3rem">
+				<span style="font-size:0.16rem;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(55,67,88,1);">共5条数据，共1页，每页显示5条</span>
+				<div style="display: inline-block;float: right">
+					<span style="float: left;margin-right: 0.15rem">
+						<img src="img/p3.png" alt="" style="width:0.22rem;margin-top: 0.01rem">
+					</span>
+					<span  style="float: left;margin-right: 0.15rem;margin-top: 0.05rem">
+						<img src="img/p1.png" alt="" style="width:0.1rem;">
+					</span>
+					<input  style="float: left;margin-right: 0.15rem;font-size: 0.2rem;width: 0.3rem;height: 0.22rem;">1</input>
+					<span  style="float: left;margin-right: 0.15rem;margin-top: 0.05rem">
+						<img src="img/p2.png" alt="" style="width:0.1rem;">
+					</span>
+					<span  style="float: left;margin-right: 0.15rem">
+						<img src="img/p4.png" alt="" style="width:0.22rem;;margin-top: 0.01rem">
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

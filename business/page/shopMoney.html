@@ -1,0 +1,54 @@
+<!-- 店铺管理———————————— 资产统计 -->
+<div class="jiaoyiViewWrap conWrap" style="padding:.44rem 0.2rem 0.54rem 0.2rem">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;">
+				<div class="leftTit" style="padding-left: 0.54rem;" ng-show='userInfoType=="super"'>
+					<a class="aHref hand"  href="#/shgl" ng-click="handclk('shgl')">店铺管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">{{shopName}}</span>
+				</div>
+				<div class="leftTit" style="padding-left: 0.54rem;" ng-show='userInfoType=="shop_manager"'>
+					<a class="aHref hand"  href="#/shglManger" ng-click="handclk('shglManger')">店铺管理&gt;</a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">{{shopName}}</span>
+				</div>
+
+				<div style="padding-left: 1rem;padding-top: 0.4rem;">
+					<div class="zcWrap clearfix">
+						<span>总资产：</span><span class="big">235566654</span> <span>元</span>
+					</div>
+					<div class="zcWrap clearfix" style="margin-top: 0.3rem;">
+						<span>时间选择：</span>
+				
+						<input startdate modeltext='textTime' class="hand" type="text" ng-model="textTime" placeholder="选择时间"  style="display: inline-block;height: 0.4rem;margin-top: 0.05rem;float: left; width: 1.74rem;border:0.01rem solid #ddd;border-radius: 0.05rem;padding-left: 0.1rem;margin-right: 0.1rem;font-size: 0.16rem;"/>
+						<select name="" id="dayType" style="display: inline-block;height: 0.4rem;margin-top: 0.05rem;float: left; width: 1.74rem;border:0.01rem solid #ddd;border-radius: 0.05rem;padding-left: 0.1rem;margin-right: 0.1rem;font-size: 0.16rem;background: #fff;">
+							<option value="month">月</option>
+							<option value="day">日</option>
+						</select>
+						<span ng-click='getTimefn()' class="hand"  style="display: inline-block;height: 0.4rem;margin-top: 0.05rem;float: left; width: 1rem;border:0.01rem solid #1170B2;color: #1170B2;line-height: 0.42rem; border-radius: 0.05rem;padding:0;text-align: center;">查询</span>
+
+					</div>
+				</div>
+				<div id="iWrap">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 删除 -->
+<div class="modal" ng-show='delmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>删除提示</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='delmodalShow=false'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			您确定要删除此广告?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn">确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

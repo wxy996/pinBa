@@ -1,0 +1,81 @@
+<div class="leftPageWrap" ng-show='showLeft=="show"'>
+	<div class="logoWrap">
+		<img src="img/img_logo_nor@2x.png" alt="">
+	</div>
+	<ul class="leftNav">
+		<li ng-show='leftInfoPt.OVERVIEW_SYS'>
+			<a href="#/overView" ng-class="leftNav=='overView'?'ac':''" ng-click="handclk('overView')">
+				<img src="img/ic_overview_nor@2x.png" alt="">
+				<span>概&nbsp&nbsp览</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.EMPLOYEE_SYS'>
+			<a href="#/staff" ng-class="leftNav=='staff'?'ac':''" ng-click="handclk('staff')">
+				<img src="img/yggl.png" alt="">
+				<span>员工管理</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.AD_CHECK'>
+			<a href="#/poster" ng-class="leftNav=='poster'?'ac':''" ng-click="handclk('poster')">
+				<img src="img/ic_ad_nor@2x.png" alt="">
+				<span>广告审核</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.BUSINESS_SYS'>
+			<a href="#/merchant" ng-class="leftNav=='merchant'?'ac':''" ng-click="handclk('merchant')">
+				<img src="img/ic_account management_nor@2x.png" alt="">
+				<span>商铺管理</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.WITHDRAW_SYS'>
+			<a href="#/putForward" ng-class="leftNav=='putForward'?'ac':''" ng-click="handclk('putForward')">
+				<img src="img/ic_withdrawal audit_nor@2x.png" alt="">
+				<span>提现管理</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.PUSH_SYS'>
+			<a href="#/earthPush" ng-class="leftNav=='earthPush'?'ac':''" ng-click="handclk('earthPush')">
+				<img src="img/ic_push the management_nor@2x.png" alt="">
+				<span>地推管理</span>
+			</a>
+		</li>
+<!-- 		<li ng-show='leftInfoPt.OVERVIEW_SYS'>
+			<a href="#/shgl" ng-class="leftNav=='shgl'?'ac':''" ng-click="handclk('shgl')">
+				<img src="img/sh.png" alt="">
+				<span>商户管理</span>
+			</a>
+		</li> -->
+		<li ng-show='leftInfoPt.USER_CLIENT_SYS'>
+			<a href="#/account" ng-class="leftNav=='account'?'ac':''" ng-click="handclk('account')">
+				<img src="img/ic_account management_nor@2x.png" alt="">
+				<span>账号管理</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.TRADE_SYS'>
+			<a href="#/transaction" ng-class="leftNav=='transaction'?'ac':''" ng-click="handclk('transaction')">
+				<img src="img/ic_trade information_nor@2x.png" alt="">
+				<span>交易信息</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.SUGGEST_SYS'>
+			<a href="#/feedback" ng-class="leftNav=='feedback'?'ac':''" ng-click="handclk('feedback')">
+				<img src="img/ic_message feedback_nor@2x.png" alt="">
+				<span>用户反馈</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.AD_SYS'>
+			<a href="#/ad" ng-class="(leftNav=='ad'||leftNav=='adDetail'||leftNav=='addAd'||leftNav=='regionAd')?'ac':''" ng-click="handclk('ad')">
+				<img src="img/gggl.png" alt="">
+				<span>广告管理</span>
+			</a>
+		</li>
+		<li ng-show='leftInfoPt.INFORMATION_SYS'>
+			<a href="#/mes" ng-class="leftNav=='mes'?'ac':''" ng-click="handclk('mes')">
+				<img src="img/mes.png" alt="">
+				<span>信息提示</span>
+			</a>
+		</li>
+
+		
+	</ul>
+</div>

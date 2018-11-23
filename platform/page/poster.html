@@ -1,0 +1,105 @@
+<!-- 概览 -->
+<!-- 720 575 -->
+<div class="posterViewWrap conWrap" style="padding-top: 0">
+	<div class="row">
+		<div>
+			<div style="padding-top:.61rem;padding-bottom: .41rem;">
+				<div class="leftTit">
+					广告申请列表>
+				</div>
+				<div class="navChangeWrap">
+					<span ng-class='navType=="nav0"?"ac hand":"hand"' ng-click='navBtn("0")'>申请中</span>
+					<span ng-class='navType=="nav1"?"ac hand":"hand"' ng-click='navBtn("1")'>历史记录</span>
+				</div>
+				<div style="padding-left: 0.8rem;">
+					<table class="staffTable">
+						<thead>
+							<th>商户名称</th>
+							<th>店铺名称</th>
+							<th>店铺归属地</th>
+							<th>商户电话</th>
+							<th>申请时间</th>
+							<th> {{navType=="nav0"?"操作":"状态"}}</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat='p in adList'>
+								<td>{{p.shop.trade.title}}</td>
+								<td>
+									{{p.shop.shop_name}}
+								</td>
+								<td>
+									{{p.shop.province_name}}
+								</td>
+								<td>
+									{{p.shop.shop_tel}}
+								</td>
+								<td>
+									{{p.created_at+'000'|date:'yyyy-MM-dd HH:mm:ss'}}
+								</td>
+								<td ng-show='navType=="nav0"'>
+									<span class="hand" style="color: #CF6060;margin-right: 0.1rem" ng-click='noBtn(p.id)'>拒绝</span>
+									<span class="hand" style="color: #62D17E" ng-click='openModal(p.id)'>开通</span>
+								</td>
+								<td ng-show='navType=="nav1"'>
+									<span ng-show='p.status==-1' class="hand" style="color: #CF6060">已拒绝</span>
+									<span ng-show='p.status==0' class="hand" style="color: #CF6060">待审</span>
+									<span ng-show='p.status==1' class="hand" style="color: #CF6060">通过</span>
+									<span ng-show='p.status==-2' class="hand" style="color: #CF6060">已关联</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 拒绝 -->
+<div class="modal" ng-show='nomodalShow'>
+	<div style="height: 4.4rem;">
+		<div class="title" style="">
+			<span>拒绝原因</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeNoModal()'>
+		</div>
+		<div class="con">
+			<textarea name="" id="" placeholder="请写出拒绝原因" ng-model='jjText'></textarea>
+			<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='jjBtn()'>拒绝</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal" ng-show='openmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>操作</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			确定要开通?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='sureOpen()'>确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

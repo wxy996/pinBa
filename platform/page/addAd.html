@@ -1,0 +1,163 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="addAdViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;padding-top: 0.3rem;">
+				<div class="leftTit" >
+					<a class='aHref hand'  ng-href="#/ad" ng-click="handclk('ad')">广告管理></a>
+					<a class='aHref hand'  href="javascript:history.back()" ng-click="handclk('ad')" style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">查看详情></a>
+					<span style="font-size:0.18rem;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(55,67,88,1);">添加广告位</span>
+				</div>
+				<div class="formCon">
+					<div>
+						<div class="l">
+							广告位置
+						</div>
+						<div class="r">
+							<input type="text" ng-model="pos" disabled>
+						</div>
+					</div>
+					<div>
+						<div class="l">
+							关联订单
+						</div>
+						<div class="r">
+							<div class="cc hand" type="text" ng-click='orderFn()' style="line-height: 0.4rem;">{{orderOrder}}</div>
+						</div>
+					</div>
+					<div>
+						<div class="l">
+							开始／结束时间
+						</div>
+						<div class="r">
+							<input def-laydate range="~" class="hand" type="text" ng-model="dateText" placeholder="选择开始时间与结束时间" />
+						</div>
+						<div>第一次为开始时间，第二次为结束时间</div>
+					</div>
+					<div>
+						<div class="l">
+							上传缩略图
+						</div>
+						<div class="r" style="padding-top: 0.15rem;">
+							 <div class="kuang" style="position: relative;"> 
+                                <div class="on on0" style="width: 1.24rem;height: 0.8rem;background: #e9e9e9;background: url(img/add.png) no-repeat;background-size: 100% 100%;overflow: hidden;">
+                                </div>
+                                <div class="addhao" style="width: 100%;height: 100%;position: absolute;top: 0;left: 0">
+                                    <input type="file" class="fileinput0 hand" style="width:100%;font-size: 0.12rem; height:100%;opacity: 0; display: inline-block;" id="image" accept="image/*">
+                                </div>
+                                <input type="hidden" name="pic" class="input0">
+                             </div>
+						</div>
+					</div>
+			<!-- 		<div>
+						<div class="l">
+							标题
+						</div>
+						<div class="r">
+							<input type="text" placeholder="美食">
+						</div>
+					</div> -->
+					<!-- <div>
+						<div class="l">
+							城市名称
+						</div>
+						<div class="r">
+							<input type="text" placeholder="北京">
+						</div>
+					</div>
+					<div>
+						<div class="l">
+							城市代码
+						</div>
+						<div class="r">
+							<input type="text" placeholder="001">
+						</div>
+					</div> -->
+					<div>
+						<div class="l">
+							商铺ID
+						</div>
+						<div class="r">
+							<input type="text" placeholder="请填写商铺Id" ng-disabled='orderOrder!="请选择订单"' ng-model='shId'>
+						</div>
+					</div>
+		<!-- 			<div>
+						<div class="l">
+							广告ID
+						</div>
+						<div class="r">
+							<input type="text" placeholder="001">
+						</div>
+					</div> -->
+					<div>
+						<div class="l">
+							排序
+						</div>
+						<div class="r">
+							<input type="text" placeholder="请输入数字" ng-model='sortNum'>
+						</div>
+					</div>
+					<div class="signBtn" style="width: 100%;margin-top: 2.8rem;text-align: center;">
+						<a href="javascript:;" class="btn-blueBig"  style="width:1.1rem;height: 0.36rem;font-size: 0.18rem;line-height: 0.36rem;"  ng-click='save()'>确定添加</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 员工管理 -->
+<div class="modal" ng-show='modalShow'>
+	<div style="height: 6.28rem;width: 12rem;overflow-y: auto">
+		<div class="title" style="">
+			<span>员工管理</span>
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeBtnAlert()'>
+		</div>
+		<table class="staffTable">
+			<thead>
+				<th style="width:15%">单号</th>
+				<th style="width:10%">商铺名</th>
+				<th style="width:10%">商铺ID</th>
+				<th style="width:10%">商户名</th>
+				<th style="width:10%">商户ID</th>
+				<th style="width:10%">缩略图</th>
+			</thead>
+			<tbody class="radioModal">
+				<tr ng-repeat='p in order'>
+					<td>
+						<input name='orderId' type="radio" order='{{p.id}}' dataOrder='{{p.banner_order_no}}' shId='{{p.trade_shop_id}}' ng-click=''>
+						{{p.banner_order_no}}
+					</td>
+					<td>{{p.shop_name}}</td>
+					<td>{{p.trade_shop_id}}</td>
+					<td>{{p.trade_name}}</td>
+					<td>{{p.trade_id}}</td>
+					<td>
+						<img ng-src="{{p.path}}" alt="" style="width: 1.14rem;margin-left: 0.1rem">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="navPage">
+					<span class="p">共{{userCount.total}}条数据，共{{userCount.total_pages}}页,每页显示{{userCount.per_page}}条</span>
+					<div class="r">
+						<span class="bigImg hand" ng-click="setPage(1)">
+							<img src="img/p3.png" alt="">
+						</span>
+						<span class="sImg hand" ng-click="prevPage()">
+							<img src="img/p1.png" alt="">
+						</span>
+						<input  style="" ng-model='total_pages'></input>
+						<span class="sImg hand" ng-click="nextPage()">
+							<img src="img/p2.png" alt="">
+						</span>
+						<span class="bigImg hand" ng-click="setPage(userCount.total_pages)">
+							<img src="img/p4.png" alt="">
+						</span>
+					</div>
+				</div>
+		<div style="text-align: center;margin-top: 0.2rem;padding-bottom: 0.2rem;">
+				<span class="modalSendBtn hand" ng-click='orderYes()'>确定</span>
+		</div>
+	</div>
+</div>

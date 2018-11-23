@@ -1,0 +1,107 @@
+<!-- 广告管理 -->
+<!-- 720 575 -->
+<div class="mesViewWrap conWrap" style="padding-top: 0.5rem;">
+	<div class="row">
+		<div>
+			<div style="padding-bottom: .41rem;padding-top: 0.24rem;">
+		<!-- 		<div class="formTop1">
+					<span>回复样式：</span>
+					<select name="" id="">
+						<option value="">信息自动回复</option>
+						<option value="">忽略</option>
+					</select>
+					<span class="hand btn">查询</span>
+				</div> -->
+				<div class="formTop2">
+					<div>
+						<p>第一次提示:</p>
+						<textarea type="text" placeholder="第一次提示" ng-model='text1'></textarea>
+					</div>
+					<div>
+						<p>第二次提示:</p>
+						<textarea type="text" placeholder="第二次提示" ng-model='text2'></textarea>
+					</div>
+					<div style="border: none;margin-right: 0">
+						<p>第三次提示:</p>
+						<textarea type="text" placeholder="第三次提示" ng-model='text3'></textarea>
+					</div>
+					<span class="hand" ng-click='editBtn()'>修改提示内容</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal" ng-show='openmodalShow'>
+	<div style="height: 3.45rem;">
+		<div class="title" style="">
+			<span>操作</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeopenAlert()'>
+		</div>
+		<div style="height: 1.95rem;line-height: 1.95rem;font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;">
+			确定要修改提示内容吗?
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn hand" ng-click='sureOpen()'>确定</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>
+<!-- 清空提示次数 -->
+<div class="modal" ng-show='resetmodalShow'>
+	<div style="height: 3.4rem;">
+		<div class="title" style="">
+			<span>清空提示次数</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeResetAlert()'>
+		</div>
+		<div style="height: 1.6rem;padding: 0.575rem 0;line-height: 1; font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;margin-bottom: 0.2rem;">
+			<span style="margin-right: 0.1rem;">提示次数</span>
+			<input type="text" style="display: inline-block;width: 1.5rem;height: 0.45rem;line-height: 0.45rem;background: #cfcfcf;border-radius: 0.05rem;border: none;text-align: center;font-size: 0.22rem;" value="0" />
+		</div>
+		<div style="text-align: center;">
+				<span class="modalSendBtn">确定清空</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>
+<!-- 发送提示次数 -->
+<div class="modal" ng-show='sendtmodalShow'>
+	<div style="height: 3.4rem;">
+		<div class="title" style="">
+			<span>发送提示</span>
+			<!-- <span>修改店员信息</span>   -->
+			<img src="img/btn_close_nor@2x.png" alt="" ng-click='closeSendAlert()'>
+		</div>
+		<div style="height: 1.68rem;padding: 0.5rem 0;line-height: 1; font-size:0.22rem;font-family:SourceHanSansCN-Medium;font-weight:500;color:rgba(51,51,51,1);text-align: center;margin-bottom: 0.4rem;">
+			<div class="formTop2 formTop3 clearfix">
+				<div>
+					<label for="" class="clearfix">
+						<input type="checkbox">
+						<span>提示1次:</span>
+						<input type="text" placeholder="请尽快发放优惠券" disabled value="请尽快发放优惠券">
+					</label>
+				</div>
+				<div>
+					<label for="" class="clearfix">
+						<input type="checkbox">
+						<span>提示2次:</span>
+						<input type="text" placeholder="请尽快发放优惠券" disabled value="请尽快发放优惠券">
+					</label>
+				</div>
+				<div>
+					<label for="" class="clearfix">
+						<input type="checkbox">
+						<span>提示3次:</span>
+						<input type="text" placeholder="请尽快发放优惠券" disabled value="请尽快发放优惠券">
+					</label>
+				</div>
+			</div>
+
+		</div>
+		<div style="text-align: center;width: 100%">
+				<span class="modalSendBtn">发送</span>
+				<!-- <span class="modalSendBtn"></span> -->
+			</div>
+	</div>
+</div>

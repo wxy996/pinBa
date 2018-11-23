@@ -1,0 +1,181 @@
+<!-- shopDataIframe.html -->
+<!DOCTYPE html>
+<html lang="en" ng-app="shop">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
+	<link rel="stylesheet" type="text/css" href="../css/nav.css">
+	<link rel="icon" type="image/png" sizes="96x96" href="../img/logo.png">
+	<title>拼吧-商户后台</title>
+	<style>
+		.forTopWrap{
+			background: #fff;
+			border-top: 3px dashed #888;
+		}
+		.forTopWrap p{
+			font-size: 0.3rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div>
+			<div id="main" style="width: 80%;height:400px;background: #f3f3f3;margin-left: 10%;"></div>
+		</div>
+	</div>
+
+	<script src="../js/jquery-1.12.3.min.js"></script>
+	
+
+	<script src="../js/reset.js?v=4"></script>
+	<script src="../js/city.js?v=1"></script>
+	<script src="../js/laydate.js"></script> 
+	<script src="../js/echarts.min.js"></script> 
+
+	<script>
+
+		var ordercode=getUrlParems(window.location.href);
+		var oHtml=$("html");
+
+		var viewH=ordercode.viewH
+		// console.log(ordercode)
+		if(viewH>1200){
+			var fontSize = viewH / 1920 * 100; 
+			oHtml.css("font-size",+fontSize+"px")
+		}else{
+			var fontSize = 1200 / 1920 * 100; 
+			oHtml.css("font-size",+fontSize+"px")
+		}
+/////////////第一个
+		$.ajax({
+			type: "get",
+			url : oUrl+'busi/data/statistic/fight',
+			async : false,
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization':'Bearer '+window.localStorage.getItem("shopToken")
+			},
+			data:{
+				shop_id:ordercode.id,
+				begin_date:ordercode.time1+'-'+ordercode.time2,
+			},
+			success : function(res){
+				// console.log(res)
+				if( res.status_code==200){
+///////////////////////////////////////////////////////////////////////////////
+
+					var list=res.data||[]
+					// console.log(list)
+					if(list.length!=0){
+
+						// var arr=[{
+						// 	discount: "80.00", 
+						// 	fight_group: [{group: 'name1', num: 2}, {group: 'name2', num: 3}, {group: 'name3', num: 3}]
+						// },
+						// {
+						// 	discount: "90.00", 
+						// 	fight_group: [{group: 'name1', num: 4}, {group: 'name2', num: 8}, {group: 'name3', num: 3}]
+						// },
+						// {
+						// 	discount: "70.00", 
+						// 	fight_group: [{group: 'name1', num: 4}, {group: 'name2', num: 8}, {group: 'name3', num: 3}]
+						// }]
+
+						var ResultArray=formaetArr(res.data)
+						console.log(ResultArray)
+						var newArr=[]
+
+			
+						// console.log(formaetArr(res.data))
+						function formaetArr(data) {
+							var arr = data || [];
+							var result = {'product':[]};
+							var keys = ['product'];     // 记录顺序
+							for (var i=0,l=arr.length;i<l;i++) {
+								var item = arr[i];
+								result.product.push(item.discount); // product
+								// name
+								for (var j=0,k=item.fight_group.length;j<k;j++) {
+									var n = item.fight_group[j];
+									if (result[n.group] != undefined) {
+										result[n.group].push(n.num);
+									} else {
+										result[n.group] = [n.num];
+										keys.push(n.group);
+									}
+								}
+							}
+							// 出来的格式是这样的
+			//				result = {
+			//					'product':["80.00","90.00"]
+			//					'name1':[2,4]
+			//					'name2':[3,8]
+			//				};
+							// 转化一下
+							var re = [];
+							for (var i=0,l=keys.length;i<l;i++) {
+								var key = keys[i];
+								re.push([key].concat(result[key]));
+							}
+							return re;
+						}
+						var series=[]
+						for(var i=0;i<ResultArray.length-1;i++){
+							series.push({type: 'bar'})
+						}
+
+
+	
+
+
+						var myChart = echarts.init(document.getElementById('main'));
+						var option = {
+						    title: {
+						        text: '团购人数类型比',
+						        // subtext: '总拼-消费人数对比图'
+						    },
+						    legend: {},
+						    tooltip: {},
+						    dataset: {
+						        source: ResultArray
+						    },
+						    xAxis: {type: 'category'},
+						    yAxis: {},
+						    series:series
+						};
+				        myChart.setOption(option);
+					}
+					
+					
+
+				}
+			
+			},error:function(res){
+				if(res.responseJSON.status_code==422){
+					alert(res.responseJSON.errors[0].error)
+				}else{
+					alert(res.responseJSON.errors)
+				};
+			}
+		})
+		
+//////////////第二个
+		
+
+        function getUrlParems(url) {
+		    var index = url.indexOf("?");
+		    var str = url.substr(index + 1);
+		    var aParams = str.split("&");
+		    var obj = {};
+		    for (var i = 0; i < aParams.length; i++) {
+		        var inParams = aParams[i].split("=");
+		        obj[inParams[0]] = inParams[1];
+		    }
+		    return obj;
+		}
+
+		
+	</script>
+</body>
+</html>
